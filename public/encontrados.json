@@ -1,0 +1,1340 @@
+[
+  {
+    "result": {
+      "data": {
+        "json": {
+          "data": [
+            {
+              "id": 96468,
+              "name": "Crowley",
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/e6aa961a-e8f3-428e-bddc-f1cebc0d826a.jpeg",
+              "species": "DOG",
+              "color": "WHITE",
+              "eyesColor": "GREEN",
+              "size": "M",
+              "breed": "DO_NOT_KNOW",
+              "ageType": "PUPPY",
+              "gender": "M",
+              "reward": 0,
+              "comment": "Resgatamos ele como filhote, corrigimos a uma pequena hérnia, castramos, vermifugamos e cuidamos por cerca de seis meses. Ele é lindo, super dócil e se dá bem com crianças e outros animais. Não conseguimos ficar com ele, por isso estamos buscando um lar que o permita ter atenção e ser feliz!",
+              "latitude": -23.56037,
+              "longitude": -46.67483,
+              "calculatedAddress": "Rua Alves Guimarães, 170, Jardim Paulista, São Paulo - SP, 05410-000, Brasil",
+              "city": "São Paulo",
+              "addressRefPoint": "",
+              "neighborhood": "Jardim Paulista",
+              "postalCode": "05410000",
+              "happenedAt": "2024-12-22T14:46:04.461Z",
+              "createdAt": "2024-12-22T14:51:13.749Z",
+              "updatedAt": "2024-12-22T18:14:13.976Z",
+              "status": "FOR_ADOPTION",
+              "successPictureUrl": null,
+              "successDescription": null,
+              "successMethod": null,
+              "successAt": null,
+              "featuredAt": "2024-12-22T18:14:15.259Z",
+              "userId": 106873,
+              "fbPostId": "1024620619683099",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": "Tatiane",
+              "vetTags": [
+                "VACCINATED",
+                "CASTRATED",
+                "DEWORMED"
+              ],
+              "temperTags": [
+                "TEMPER_SWEET",
+                "TEMPER_PLAYFUL",
+                "TEMPER_CALM"
+              ],
+              "adaptabilityTags": [
+                "LIVES_WELL_APARTMENT",
+                "LIVES_WELL_BACKYARD"
+              ],
+              "sociabilityTags": [
+                "SOCIABLE_WITH_CHILDREN",
+                "SOCIABLE_WITH_DOGS",
+                "SOCIABLE_WITH_STRANGERS"
+              ],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 97155,
+              "name": "Snow",
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/da62c4ce-8454-472e-98c9-244db3ace0c5.jpeg",
+              "species": "DOG",
+              "color": "GOLD",
+              "eyesColor": "BLUE",
+              "size": "M",
+              "breed": "HUSKY_SIBERIANO",
+              "ageType": "ADULT",
+              "gender": "M",
+              "reward": 0,
+              "comment": "Infelizmente não consigo mais cuidar do snow como ele merece e está acostumado por dois motivos: primeiro mudamos de uma casa para um apto e ele não está conseguindo se adaptar ao espaço e segundo porque sofri um acidente doméstico e farei uma grande cirurgia no joelho impossibilitando que possa fazer seus passeios diarios. Ele é um cão dócil e treinado. Obede comandos básicos. ",
+              "latitude": -23.69018,
+              "longitude": -46.5394,
+              "calculatedAddress": "09751-460, Baeta Neves, São Bernardo do Campo, SP, Brasil",
+              "city": "São Bernardo do Campo",
+              "addressRefPoint": "Crec Baetinha",
+              "neighborhood": "Baeta Neves",
+              "postalCode": "09751-460",
+              "happenedAt": "2024-12-26T01:27:57.594Z",
+              "createdAt": "2024-12-26T01:36:22.995Z",
+              "updatedAt": "2024-12-26T01:36:22.995Z",
+              "status": "FOR_ADOPTION",
+              "successPictureUrl": null,
+              "successDescription": null,
+              "successMethod": null,
+              "successAt": null,
+              "featuredAt": null,
+              "userId": 108113,
+              "fbPostId": "1027213906090437",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "OTHER",
+              "shelterName": "Residência",
+              "vetTags": [
+                "VACCINATED",
+                "DEWORMED"
+              ],
+              "temperTags": [
+                "TEMPER_SWEET",
+                "TEMPER_PLAYFUL",
+                "TEMPER_SOCIABLE"
+              ],
+              "adaptabilityTags": [
+                "LIVES_WELL_BACKYARD"
+              ],
+              "sociabilityTags": [
+                "SOCIABLE_WITH_CHILDREN",
+                "SOCIABLE_WITH_DOGS",
+                "SOCIABLE_WITH_STRANGERS"
+              ],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 97148,
+              "name": "Pepita",
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/bfdebab1-db1d-4141-a94d-534ba8352c79.jpeg",
+              "species": "CAT",
+              "color": "BLACK",
+              "eyesColor": "YELLOW",
+              "size": "M",
+              "breed": "DO_NOT_KNOW",
+              "ageType": "ADULT",
+              "gender": "F",
+              "reward": 0,
+              "comment": "Gata preta com branco, idade em média 3 anos, castrada e dócil. ",
+              "latitude": -23.44641,
+              "longitude": -46.53932,
+              "calculatedAddress": "Rua Dom Macedo da Costa, Picanço, Guarulhos - SP, 07097-320, Brasil",
+              "city": "Guarulhos",
+              "addressRefPoint": "Em frente a escola infantil ",
+              "neighborhood": "Picanço",
+              "postalCode": "07097-320",
+              "happenedAt": "2024-05-26T03:00:00.000Z",
+              "createdAt": "2024-12-26T01:06:29.614Z",
+              "updatedAt": "2024-12-26T01:08:45.546Z",
+              "status": "FOR_ADOPTION",
+              "successPictureUrl": null,
+              "successDescription": null,
+              "successMethod": null,
+              "successAt": null,
+              "featuredAt": null,
+              "userId": 6353,
+              "fbPostId": "1027200892758405",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": null,
+              "vetTags": [
+                "CASTRATED",
+                "DEWORMED"
+              ],
+              "temperTags": [
+                "TEMPER_SWEET",
+                "TEMPER_CALM",
+                "TEMPER_SOCIABLE",
+                "TEMPER_SHY",
+                "TEMPER_INDEPENDENT",
+                "TEMPER_NEEDY"
+              ],
+              "adaptabilityTags": [
+                "LIVES_WELL_APARTMENT",
+                "LIVES_WELL_BACKYARD"
+              ],
+              "sociabilityTags": [
+                "SOCIABLE_WITH_CHILDREN",
+                "SOCIABLE_WITH_CATS",
+                "SOCIABLE_WITH_STRANGERS"
+              ],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 97141,
+              "name": null,
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/a2c86c98-b0f3-4b71-8ab5-47c2bc2d22a0.jpeg",
+              "species": "CAT",
+              "color": "BROWN",
+              "eyesColor": "BLUE",
+              "size": "S",
+              "breed": "UNDEFINED",
+              "ageType": "PUPPY",
+              "gender": "F",
+              "reward": 0,
+              "comment": "Esse é uns dos filhotes da última linhada da minha gata",
+              "latitude": -23.48248,
+              "longitude": -46.68547,
+              "calculatedAddress": "Avenida Itaberaba, 2824, Freguesia do Ó, São Paulo - SP, 02739-000, Brasil",
+              "city": "São Paulo",
+              "addressRefPoint": "Perto da padaria Maraba ",
+              "neighborhood": "Freguesia do Ó",
+              "postalCode": "02739-000",
+              "happenedAt": "2024-12-24T13:37:51.039Z",
+              "createdAt": "2024-12-26T00:44:09.647Z",
+              "updatedAt": "2024-12-26T00:44:09.647Z",
+              "status": "FOR_ADOPTION",
+              "successPictureUrl": null,
+              "successDescription": null,
+              "successMethod": null,
+              "successAt": null,
+              "featuredAt": null,
+              "userId": 107086,
+              "fbPostId": "1027191089426052",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": null,
+              "vetTags": [],
+              "temperTags": [],
+              "adaptabilityTags": [
+                "LIVES_WELL_APARTMENT",
+                "LIVES_WELL_BACKYARD"
+              ],
+              "sociabilityTags": [],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            }
+          ],
+          "nextCursor": "1"
+        },
+        "meta": {
+          "values": {
+            "data.0.happenedAt": [
+              "Date"
+            ],
+            "data.0.createdAt": [
+              "Date"
+            ],
+            "data.0.updatedAt": [
+              "Date"
+            ],
+            "data.0.featuredAt": [
+              "Date"
+            ],
+            "data.0.ownerEmail": [
+              "undefined"
+            ],
+            "data.0.ownerName": [
+              "undefined"
+            ],
+            "data.0.activeCampaign": [
+              "undefined"
+            ],
+            "data.1.happenedAt": [
+              "Date"
+            ],
+            "data.1.createdAt": [
+              "Date"
+            ],
+            "data.1.updatedAt": [
+              "Date"
+            ],
+            "data.1.ownerEmail": [
+              "undefined"
+            ],
+            "data.1.ownerName": [
+              "undefined"
+            ],
+            "data.1.activeCampaign": [
+              "undefined"
+            ],
+            "data.2.happenedAt": [
+              "Date"
+            ],
+            "data.2.createdAt": [
+              "Date"
+            ],
+            "data.2.updatedAt": [
+              "Date"
+            ],
+            "data.2.ownerEmail": [
+              "undefined"
+            ],
+            "data.2.ownerName": [
+              "undefined"
+            ],
+            "data.2.activeCampaign": [
+              "undefined"
+            ],
+            "data.3.happenedAt": [
+              "Date"
+            ],
+            "data.3.createdAt": [
+              "Date"
+            ],
+            "data.3.updatedAt": [
+              "Date"
+            ],
+            "data.3.ownerEmail": [
+              "undefined"
+            ],
+            "data.3.ownerName": [
+              "undefined"
+            ],
+            "data.3.activeCampaign": [
+              "undefined"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "result": {
+      "data": {
+        "json": [
+          {
+            "id": 4,
+            "name": "Adote um Gatinho",
+            "phone": null,
+            "pix": null,
+            "description": null,
+            "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/partners/cb0e0569-07fc-4a08-84e7-25c4d248b322.jpeg",
+            "link": "https://www.instagram.com/adoteumgatinho/",
+            "city": "São Paulo",
+            "state": "SP",
+            "latitude": -23.5706154,
+            "longitude": -46.6447549,
+            "relevance": 0,
+            "approved": true,
+            "createdAt": "2023-08-24T21:08:59.561Z",
+            "updatedAt": "2023-08-24T21:08:59.561Z",
+            "couponKey": "ADOTEUMGATINHO",
+            "userId": 18169
+          },
+          {
+            "id": 36,
+            "name": "Patinhas Unidas Brasil",
+            "phone": null,
+            "pix": null,
+            "description": null,
+            "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/partners/c37254f8-6de4-40d3-b064-678e43f2859b.jpeg",
+            "link": "https://www.instagram.com/patinhasunidasbrasil/",
+            "city": "São Paulo",
+            "state": "SP",
+            "latitude": -23.5657393,
+            "longitude": -46.6512379,
+            "relevance": 0,
+            "approved": true,
+            "createdAt": "2023-08-29T16:56:24.024Z",
+            "updatedAt": "2023-08-29T16:56:24.024Z",
+            "couponKey": "PATINHASUNIDASSP",
+            "userId": 18169
+          },
+          {
+            "id": 10,
+            "name": "Caodeirante",
+            "phone": null,
+            "pix": null,
+            "description": null,
+            "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/partners/65317368-fd1e-44a4-a6b8-d88a8d325c20.jpeg",
+            "link": "https://www.instagram.com/ocaodeirante/",
+            "city": "São Paulo",
+            "state": "SP",
+            "latitude": -23.5657393,
+            "longitude": -46.6512379,
+            "relevance": 0,
+            "approved": true,
+            "createdAt": "2023-08-24T21:24:00.487Z",
+            "updatedAt": "2023-08-24T21:24:00.487Z",
+            "couponKey": "OCAODEIRANTE",
+            "userId": 18169
+          },
+          {
+            "id": 14,
+            "name": "Projeto Vira Latas com Raça",
+            "phone": null,
+            "pix": null,
+            "description": null,
+            "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/partners/b88fd4c1-4bf4-4264-a5ab-c90c4abb3d0b.jpeg",
+            "link": "https://www.instagram.com/projetoviralatascomraca/",
+            "city": "São Paulo",
+            "state": "SP",
+            "latitude": -23.5657393,
+            "longitude": -46.6512379,
+            "relevance": 0,
+            "approved": true,
+            "createdAt": "2023-08-25T17:12:15.144Z",
+            "updatedAt": "2023-08-25T17:12:15.144Z",
+            "couponKey": "VIRALATASCOMRACA",
+            "userId": 18169
+          },
+          {
+            "id": 11,
+            "name": "Arca da Fé",
+            "phone": null,
+            "pix": null,
+            "description": null,
+            "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/partners/3f3c8b3f-74b4-4e5e-b14c-b09a539757d4.jpeg",
+            "link": "https://www.instagram.com/ong.arca.da.fe/",
+            "city": "São Paulo",
+            "state": "SP",
+            "latitude": -23.5657393,
+            "longitude": -46.6512379,
+            "relevance": 0,
+            "approved": true,
+            "createdAt": "2023-08-25T16:00:01.002Z",
+            "updatedAt": "2023-08-25T16:00:01.002Z",
+            "couponKey": "ARCADAFE",
+            "userId": 18169
+          },
+          {
+            "id": 7,
+            "name": "Desabandone",
+            "phone": "",
+            "pix": "",
+            "description": "",
+            "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/partners/58cae066-a40c-4329-827a-8472aa188161.jpeg",
+            "link": "https://www.instagram.com/desabandone/",
+            "city": "São Paulo",
+            "state": "SP",
+            "latitude": -23.5657393,
+            "longitude": -46.6512379,
+            "relevance": 0,
+            "approved": true,
+            "createdAt": "2023-08-24T21:16:48.059Z",
+            "updatedAt": "2023-08-31T17:09:31.569Z",
+            "couponKey": "DESABANDONESP",
+            "userId": 18169
+          },
+          {
+            "id": 29,
+            "name": "Enquanto Houver Chance",
+            "phone": null,
+            "pix": null,
+            "description": null,
+            "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/partners/4ed43291-55bb-4361-b93c-11cf3fe34923.jpeg",
+            "link": "https://www.instagram.com/enquantohouverchance/",
+            "city": "São Paulo",
+            "state": "SP",
+            "latitude": -23.5657393,
+            "longitude": -46.6512379,
+            "relevance": 0,
+            "approved": true,
+            "createdAt": "2023-08-29T16:40:55.228Z",
+            "updatedAt": "2023-08-29T16:40:55.228Z",
+            "couponKey": "ENQUANTOHOUVERCHANCESP",
+            "userId": 18169
+          },
+          {
+            "id": 55,
+            "name": "Lar da Regina",
+            "phone": null,
+            "pix": null,
+            "description": null,
+            "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/partners/2144e3a7-6d8e-4769-a23d-d9d5ed4f1819.jpeg",
+            "link": "https://www.instagram.com/lardaregina/",
+            "city": "Guarulhos",
+            "state": "SP",
+            "latitude": -23.4517271,
+            "longitude": -46.5177438,
+            "relevance": 0,
+            "approved": true,
+            "createdAt": "2023-08-30T17:58:37.356Z",
+            "updatedAt": "2023-08-30T17:58:37.356Z",
+            "couponKey": "LARDAREGINARS",
+            "userId": 18169
+          }
+        ],
+        "meta": {
+          "values": {
+            "0.createdAt": [
+              "Date"
+            ],
+            "0.updatedAt": [
+              "Date"
+            ],
+            "1.createdAt": [
+              "Date"
+            ],
+            "1.updatedAt": [
+              "Date"
+            ],
+            "2.createdAt": [
+              "Date"
+            ],
+            "2.updatedAt": [
+              "Date"
+            ],
+            "3.createdAt": [
+              "Date"
+            ],
+            "3.updatedAt": [
+              "Date"
+            ],
+            "4.createdAt": [
+              "Date"
+            ],
+            "4.updatedAt": [
+              "Date"
+            ],
+            "5.createdAt": [
+              "Date"
+            ],
+            "5.updatedAt": [
+              "Date"
+            ],
+            "6.createdAt": [
+              "Date"
+            ],
+            "6.updatedAt": [
+              "Date"
+            ],
+            "7.createdAt": [
+              "Date"
+            ],
+            "7.updatedAt": [
+              "Date"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "result": {
+      "data": {
+        "json": {
+          "data": [
+            {
+              "id": 17,
+              "slug": "ajude-seu-pet-a-enfrentar-o-barulho-dos-fogos-no-ano-novo",
+              "title": "Ajude seu pet a enfrentar o barulho dos fogos no Ano Novo",
+              "subtitle": "",
+              "createdAt": "2024-12-20T18:01:30.405Z",
+              "content": "Ano Novo é sinônimo de festas, celebrações e, claro, fogos de artifício. No entanto, **enquanto os humanos aproveitam os espetáculos luminosos, muitos animais de estimação sofrem com o barulho intenso**. A audição sensível dos pets torna os fogos assustadores e, em alguns casos, podem causar traumas físicos e emocionais.\n\nQuer ajudar seu pet a passar por essa época com mais tranquilidade? \nSeparamos algumas **dicas essenciais para minimizar o desconforto** e garantir um Ano Novo mais tranquilo para o seu amigo peludo.\n\nAntes de qualquer coisa, saiba que é importante escolher um cômodo da casa onde o barulho seja menos intenso. \nPor lá, você pode colocar caminhas, cobertores e itens familiares para que seu pet se sinta acolhido. Fechar portas e janelas ajuda a abafar o som e evita que o animal fuja em momentos de medo.\n\n**Vamos a outras dicas importantes?**\n\n### Sons que confortam \n**Música relaxante ou sons de TV** podem ajudar a disfarçar o barulho dos fogos. Experimente playlists específicas para acalmar animais de estimação. O som constante cria uma sensação de normalidade e diminui o impacto do ruído externo.\n\n##### **[Clique aqui](https://www.youtube.com/watch?v=4DYAAaBehY8) e encontre uma playlist com 12h para acalmar seu pet.**\n\n### Use acessórios calmantes\n**Roupinhas de compressão, como as chamadas \"thunder shirts\",** podem trazer conforto, simulando um abraço. Consulte seu veterinário para saber se essas opções são adequadas para seu pet.\n\n### Evite broncas\nSeu pet pode reagir ao medo com latidos, tremores ou até mesmo escondendo-se. **Jamais o repreenda por isso**. Ao contrário, demonstre calma e ofereça carinho para que ele perceba que está seguro.\n\n### Considere ajuda profissional \nSe seu pet sofre muito com fogos, **converse com o veterinário sobre o uso de medicamentos ou feromônios calmantes**. Esses produtos podem ser indicados para reduzir a ansiedade em situações extremas.\n\n### Identificação é essencial \nMesmo com todos os cuidados, acidentes podem acontecer. **Certifique-se de que seu pet está devidamente identificado com uma plaquinha ou microchip,** caso ele fuja durante as festas.\n\n\n![image](https://img.freepik.com/free-photo/close-shot-cute-cat-laying-looking-from-blankets-bed_181624-12591.jpg?t=st=1734717478~exp=1734721078~hmac=50ad93ed060ef8b0f97802534699bf88cc00e07264d5632230014948e520c6d0&w=740)\n\n### Fogos são lindos para nós, mas assustadores para eles.\n\nCom um pouco de planejamento e paciência, **é possível tornar esse período menos estressante para seu pet**. O conforto e bem-estar do seu amigo peludo são fundamentais para começar o ano com boas vibrações!\n\nA Viu Meu Pet está ao seu lado para cuidar do que mais importa: a segurança e o bem-estar dos seus companheiros.\n\n**[Siga a Viu Meu Pet nas redes sociais](https://www.instagram.com/viumeupetoficial/) e confira mais dicas para cuidar do seu pet durante o Ano Novo!**\n",
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/websiteImages/ajude-seu-pet-a-enfrentar-o-barulho-dos-fogos-no-ano-novo-564973c4-7c0e-494f-aec5-4c567404f9d3.jpeg",
+              "tags": [],
+              "sources": []
+            },
+            {
+              "id": 16,
+              "slug": "como-preparar-seu-pet-para-as-visitas-e-festas-de-fim-de-ano",
+              "title": "Como preparar seu pet para as visitas e festas de fim de ano",
+              "subtitle": "Separamos 6 dicas práticas para garantir que todos — humanos e animais — aproveitem o melhor da temporada.",
+              "createdAt": "2024-12-03T13:32:50.559Z",
+              "content": "O fim de ano é uma **época cheia de celebrações**, encontros familiares e momentos especiais. **Para nossos amigos de quatro patas, toda essa agitação pode ser um desafio**, mas com um pouquinho de preparação, podemos assegurar que eles também se sintam parte da festa. \n\nSabemos que o bem-estar do seu pet é prioridade, então reunimos **6 dicas práticas para ajudá-lo a se preparar para as festas de fim de ano** e garantir que todos — humanos e animais — aproveitem o melhor da temporada.\n\n### Crie um espaço seguro\nDurante as festas, sua casa pode ficar mais movimentada do que o habitual. **Crie um cantinho especial**, onde seu pet possa encontrar tranquilidade e segurança sempre que ele precisar de um momento de paz. **Pode ser um lugar com a caminha dele, brinquedos e água**.\n\n### Acostume-o às mudanças com antecedência\nSe você sabe que vai receber muitas visitas ou viajar, **introduza gradualmente as mudanças na rotina**. Apresente novos cheiros, objetos ou até mesmo barulhos que podem ser comuns no ambiente das festas para evitar surpresas que o deixem ansioso.\n\n### Socialize com responsabilidade\n**Nem todos os pets são extrovertidos**. Observe sempre o comportamento do seu pet e respeite seus limites, orientando os visitantes — especialmente as crianças — a interagirem com carinho e respeito.\n\n### Atenção à alimentação\n![image](https://img.freepik.com/premium-photo/beagle-dog-eats-feed-from-bowl-christmas-time-cozy-new-year-home-with-festive-tree-lights-cute-purebred-doggie-pet-with-food-xmas_156881-6651.jpg?w=826)\n\nCuidado com o que está na mesa! Durante as festas, é comum que os pets fiquem tentados a “roubar” pedaços da ceia ou recebam guloseimas indevidas. **Fique atento para evitar que comam algo tóxico ou fora da dieta**, e considere oferecer petiscos especiais e seguros como alternativa!\n\n### Adapte a rotina, mas mantenha a estrutura\nMesmo com uma agenda cheia, **tente manter os horários de alimentação, passeios e brincadeiras do seu pet**. Isso proporcionará um senso de continuidade e segurança, minimizando o estresse causado pelas novidades.\n\n### Sobre os fogos de artifício\nOs fogos de artíficio, muito utilizados nas celebrações de fim de ano, são um assunto importante. Por isso, vamos preparar um **conteúdo especial sobre como você pode ajudar o seu pet a enfrentar os barulhos dos fogos de ano novo**. Acompanhe aqui em nosso blog. \n\n## Estamos aqui para ajudar! \nCom um pouco de planejamento e cuidado, você pode garantir que o fim de ano seja especial para toda a família, incluindo seu pet. \n\nAfinal, eles também merecem aproveitar essa época do ano de forma segura e feliz.\n\n**[Siga-nos nas redes sociais](https://www.instagram.com/viumeupetoficial/)** para receber mais dicas e conteúdos incríveis que vão transformar o cuidado com seu melhor amigo em uma experiência ainda mais especial.",
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/websiteImages/como-preparar-seu-pet-para-as-visitas-e-festas-de-fim-de-ano-dc17ad9b-bd84-40df-8a78-51d15b88ad4a.jpeg",
+              "tags": [
+                "fim de ano",
+                "natal",
+                "réveillon",
+                "cuidado animal",
+                "cuidados com pets",
+                "viu meu pet"
+              ],
+              "sources": []
+            },
+            {
+              "id": 14,
+              "slug": "adocao-responsavel-a-historia-da-shirlei-e-do-raul",
+              "title": "Adoção responsável: a história da Shirlei e do Raul",
+              "subtitle": "Família precisou doar cachorro após mudança de casa para apartamento ",
+              "createdAt": "2024-11-27T19:17:25.856Z",
+              "content": "Em certos momentos da vida, precisamos fazer escolhas difíceis pensando no **bem-estar de nossos animais de estimação**. A história de Shirlei e seu cachorro Raul, que vivem em São Paulo (SP), é um exemplo real dessa situação.\n\n\nApós uma mudança de uma casa para um apartamento, Shirlei percebeu que essa nova fase afetou Raul de maneira negativa. Ele começou a mostrar sinais de tristeza, inatividade e desinteresse, levando Shirlei a se preocupar com a saúde emocional do seu “xodó”. Determinada a entender o que estava acontecendo, ela decidiu levar Raul ao veterinário. Para seu alívio, não havia questões de saúde que estivessem afetando Raul, mas **os profissionais levantaram a hipótese de uma depressão canina**, causada pela falta de espaço e movimento.\n\n> “Todos aqui em casa ficaram arrasados, inclusive minha filha, que cursa Medicina Veterinária”, lembrou Shirlei. Diante desse diagnóstico, ela enfrentou uma decisão difícil: doar Raul. “Não foi fácil. Fiz isso com muita dor no coração”, compartilhou.\n\n## Como a Viu meu Pet ajudou tutora num momento difícil \n\nNeste momento delicado, a **plataforma Viu Meu Pet** surgiu como uma luz na vida de Shirlei. Com a ajuda da plataforma, ela conseguiu encontrar uma nova família para Raul, e rapidamente descobriu um casal apaixonado por animais que estava disposto a oferecer o amor e cuidado que ele merecia, além de já ter um amigo canino esperando por ele.\n\n> “Só tenho a agradecer à Viu Meu Pet, pois me ajudou bastante e proporcionou encontrar uma nova família para o Raul”, declarou Shirlei, aliviada e feliz.\n\n## Precisamos estar atentos aos nossos pets\n\nA experiência de Shirlei é um **lembrete poderoso de como é crucial estarmos atentos aos sinais que nossos pets nos dão**. A felicidade e a adaptação deles em cada mudança devem ser prioridade em nossas vidas. Se você perceber que seu animal não está bem, não hesite em buscar ajuda. Às vezes, o ato mais amoroso que podemos fazer é garantir que nossos amigos peludos tenham a vida que merecem.\n\nA adoção responsável não apenas transforma a vida de um animal, mas também contribui para causas sociais e promove um impacto positivo na comunidade. Se você está pensando em adotar ou doar um pet, considere as opções disponíveis na plataforma Viu Meu Pet e faça a diferença na vida de um animal.\n\n### [Clique aqui](https://www.viumeupet.com.br/pets-para-adocao) e conheça um pet precisando de um lar \n",
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/websiteImages/adocao-responsavel-a-historia-da-shirlei-e-do-raul-e935fc7a-2fce-43e3-90ba-5e3882c616fa.jpeg",
+              "tags": [
+                "adoção",
+                "adoção responsável",
+                "depressão canina",
+                "viu meu pet"
+              ],
+              "sources": []
+            }
+          ],
+          "nextCursor": "2024-11-27T19:17:25.856Z"
+        },
+        "meta": {
+          "values": {
+            "data.0.createdAt": [
+              "Date"
+            ],
+            "data.1.createdAt": [
+              "Date"
+            ],
+            "data.2.createdAt": [
+              "Date"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "result": {
+      "data": {
+        "json": {
+          "data": [
+            {
+              "id": 96035,
+              "name": "Paçoca",
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/ba05e31a-c7c4-4743-bdbc-05c7a0ee5b12.jpeg",
+              "species": "DOG",
+              "color": "GOLD",
+              "eyesColor": "DARK",
+              "size": "S",
+              "breed": "UNDEFINED",
+              "ageType": "PUPPY",
+              "gender": "M",
+              "reward": 0,
+              "comment": "Paçoca, está em lar temporário, já vermífugado e vacinado com a primeira dose. Muito esperto e brincalhão.",
+              "latitude": -23.49334,
+              "longitude": -46.46006,
+              "calculatedAddress": "Rua Modesto de Souza, 151, Vila Jacuí, São Paulo - SP, 08070-340, Brasil",
+              "city": "São Paulo",
+              "addressRefPoint": null,
+              "neighborhood": "Vila Jacuí",
+              "postalCode": "08070-340",
+              "happenedAt": "2024-12-20T11:18:16.565Z",
+              "createdAt": "2024-12-20T11:18:08.585Z",
+              "updatedAt": "2024-12-25T23:07:03.699Z",
+              "status": "ADOPTED",
+              "successPictureUrl": null,
+              "successDescription": "",
+              "successMethod": "CAMPAIGN",
+              "successAt": "2024-12-25T23:07:03.787Z",
+              "featuredAt": null,
+              "userId": 106122,
+              "fbPostId": "1022994246512403",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": null,
+              "vetTags": [
+                "VACCINATED",
+                "DEWORMED"
+              ],
+              "temperTags": [
+                "TEMPER_PLAYFUL"
+              ],
+              "adaptabilityTags": [],
+              "sociabilityTags": [
+                "SOCIABLE_WITH_CHILDREN",
+                "SOCIABLE_WITH_DOGS"
+              ],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 96976,
+              "name": null,
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/346f4ace-01ad-4fb3-9aed-3f0ba0391f27.jpeg",
+              "species": "DOG",
+              "color": "WHITE",
+              "eyesColor": "DARK",
+              "size": "S",
+              "breed": "POODLE",
+              "ageType": "PUPPY",
+              "gender": "M",
+              "reward": 0,
+              "comment": "Pequeno cachorrinho, foi comprado recentemente porém não conseguimos dar atenção nem ficar durante o dia porque um dos tutores teve que mudar de local para trabalhar, pequeno e carinhoso",
+              "latitude": -3.83009,
+              "longitude": -38.55772,
+              "calculatedAddress": "Rua 41, Prefeito José Walter, Fortaleza - CE, 60750-550, Brasil",
+              "city": "Fortaleza",
+              "addressRefPoint": "N 250",
+              "neighborhood": "Prefeito José Walter",
+              "postalCode": "60750-550",
+              "happenedAt": "2024-12-25T14:26:29.615Z",
+              "createdAt": "2024-12-25T14:31:43.186Z",
+              "updatedAt": "2024-12-25T22:59:44.551Z",
+              "status": "ADOPTED",
+              "successPictureUrl": null,
+              "successDescription": "",
+              "successMethod": "CAMPAIGN",
+              "successAt": "2024-12-25T22:59:44.604Z",
+              "featuredAt": null,
+              "userId": 107810,
+              "fbPostId": "1026886996123128",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": null,
+              "vetTags": [
+                "DEWORMED"
+              ],
+              "temperTags": [
+                "TEMPER_SWEET",
+                "TEMPER_PLAYFUL"
+              ],
+              "adaptabilityTags": [
+                "LIVES_WELL_APARTMENT",
+                "LIVES_WELL_BACKYARD"
+              ],
+              "sociabilityTags": [
+                "SOCIABLE_WITH_CHILDREN",
+                "SOCIABLE_WITH_CATS",
+                "SOCIABLE_WITH_DOGS",
+                "SOCIABLE_WITH_STRANGERS"
+              ],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 93444,
+              "name": "Ariel",
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/470848d9-39e8-4bb0-8c9f-0e48291bbd6f.jpeg",
+              "species": "DOG",
+              "color": "WHITE",
+              "eyesColor": "DARK",
+              "size": "S",
+              "breed": "YORKSHIRE",
+              "ageType": "ADULT",
+              "gender": "F",
+              "reward": 0,
+              "comment": "Ariel nasceu no dia 17/03/2000 na pandemia, é da raça Biewer Yorkshire Terrier. Calminha e super brincalhona com crianças. Tem uma dermatite crônica controlada. A Ariel gosta de companhia e de brincar. Respeita seus comandos com educação. Porém esta causando alergia bastante severa na sua amiguinha humana e precisa urgentemente de um lar para que seja possível estabilizar a saúde da criança. ",
+              "latitude": -27.594059999999985,
+              "longitude": -48.54539,
+              "calculatedAddress": "Rua Hermann Blumenau, 117, Centro, Florianópolis - SC, 88020-020, Brasil",
+              "city": "Florianópolis",
+              "addressRefPoint": "Próximo a praça dos bombeiros ",
+              "neighborhood": "Centro",
+              "postalCode": "88020-020",
+              "happenedAt": "2024-12-08T07:43:45.140Z",
+              "createdAt": "2024-12-08T07:56:35.558Z",
+              "updatedAt": "2024-12-25T22:34:26.196Z",
+              "status": "ADOPTED",
+              "successPictureUrl": null,
+              "successDescription": "",
+              "successMethod": "CAMPAIGN",
+              "successAt": "2024-12-25T22:34:26.248Z",
+              "featuredAt": null,
+              "userId": 101426,
+              "fbPostId": "1013822877429540",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "OTHER",
+              "shelterName": null,
+              "vetTags": [
+                "VACCINATED",
+                "CASTRATED",
+                "DEWORMED",
+                "MICROCHIPPED"
+              ],
+              "temperTags": [
+                "TEMPER_SWEET",
+                "TEMPER_PLAYFUL",
+                "TEMPER_CALM",
+                "TEMPER_NEEDY"
+              ],
+              "adaptabilityTags": [
+                "LIVES_WELL_APARTMENT"
+              ],
+              "sociabilityTags": [
+                "SOCIABLE_WITH_CHILDREN"
+              ],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 97075,
+              "name": "Temporário Dany",
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/30090fb1-c724-4309-9184-039a8cbbcaa1.jpeg",
+              "species": "DOG",
+              "color": "BLACK",
+              "eyesColor": "DARK",
+              "size": "M",
+              "breed": "UNDEFINED",
+              "ageType": "ADULT",
+              "gender": "F",
+              "reward": -1,
+              "comment": "Pelagem preta e marrom, porte médio, orelhas caídas, boa obediente brincalhona e muito limpa",
+              "latitude": -23.58717,
+              "longitude": -46.57265,
+              "calculatedAddress": "Rua Pinheiro Guimarães, Vila Prudente, São Paulo - SP, 03141-030, Brasil",
+              "city": "São Paulo",
+              "addressRefPoint": "Pq vila prudente ",
+              "neighborhood": "Vila Prudente",
+              "postalCode": "03141-030",
+              "happenedAt": "2024-11-29T03:00:00.000Z",
+              "createdAt": "2024-12-25T21:32:38.017Z",
+              "updatedAt": "2024-12-25T21:40:23.885Z",
+              "status": "ADOPTED",
+              "successPictureUrl": null,
+              "successDescription": "",
+              "successMethod": "CAMPAIGN",
+              "successAt": "2024-12-25T21:40:23.979Z",
+              "featuredAt": null,
+              "userId": 107992,
+              "fbPostId": "1027112886100539",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "OTHER",
+              "shelterName": "",
+              "vetTags": [
+                "VACCINATED",
+                "CASTRATED",
+                "DEWORMED"
+              ],
+              "temperTags": [
+                "TEMPER_SWEET",
+                "TEMPER_PLAYFUL",
+                "TEMPER_CALM",
+                "TEMPER_SOCIABLE",
+                "TEMPER_INDEPENDENT"
+              ],
+              "adaptabilityTags": [
+                "LIVES_WELL_APARTMENT",
+                "LIVES_WELL_BACKYARD"
+              ],
+              "sociabilityTags": [
+                "SOCIABLE_WITH_CHILDREN",
+                "SOCIABLE_WITH_DOGS",
+                "SOCIABLE_WITH_STRANGERS"
+              ],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 96267,
+              "name": null,
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/3c8ba587-9181-46f7-9c3a-1503af683cae.jpeg",
+              "species": "CAT",
+              "color": "OTHER",
+              "eyesColor": "BLUE",
+              "size": "S",
+              "breed": "DO_NOT_KNOW",
+              "ageType": "PUPPY",
+              "gender": "M",
+              "reward": 0,
+              "comment": null,
+              "latitude": -23.61075,
+              "longitude": -46.93664,
+              "calculatedAddress": "Rua Indusquímica, 351, Jardim Empirio, Cotia - SP, 06700-260, Brasil",
+              "city": "Cotia",
+              "addressRefPoint": null,
+              "neighborhood": "Jardim Empirio",
+              "postalCode": "06700-260",
+              "happenedAt": "2024-12-08T16:08:08.056Z",
+              "createdAt": "2024-12-21T14:31:02.201Z",
+              "updatedAt": "2024-12-25T19:39:30.386Z",
+              "status": "ADOPTED",
+              "successPictureUrl": null,
+              "successDescription": "",
+              "successMethod": "CAMPAIGN",
+              "successAt": "2024-12-25T19:39:30.484Z",
+              "featuredAt": null,
+              "userId": 101284,
+              "fbPostId": "1023846646427163",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": "11972189340",
+              "vetTags": [
+                "VACCINATED"
+              ],
+              "temperTags": [
+                "TEMPER_SWEET"
+              ],
+              "adaptabilityTags": [
+                "LIVES_WELL_BACKYARD"
+              ],
+              "sociabilityTags": [
+                "SOCIABLE_WITH_CHILDREN",
+                "SOCIABLE_WITH_CATS",
+                "SOCIABLE_WITH_DOGS",
+                "SOCIABLE_WITH_STRANGERS"
+              ],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 89057,
+              "name": null,
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/a33ae74d-7cdd-4dea-8753-10ebc9e935a3.jpeg",
+              "species": "DOG",
+              "color": null,
+              "eyesColor": null,
+              "size": "M",
+              "breed": "UNDEFINED",
+              "ageType": "PUPPY",
+              "gender": "M",
+              "reward": 0,
+              "comment": "É da minha cachorra, tem um mês, estarão disponíveis depois do dia 29/11, irá com todas as vacinas da idade tomado",
+              "latitude": -23.53104,
+              "longitude": -46.78629,
+              "calculatedAddress": "Osasco, SP, Brasil",
+              "city": "Osasco",
+              "addressRefPoint": null,
+              "neighborhood": null,
+              "postalCode": "06090-015",
+              "happenedAt": "2024-11-17T04:01:53.933Z",
+              "createdAt": "2024-11-17T04:05:42.956Z",
+              "updatedAt": "2024-12-25T17:46:14.786Z",
+              "status": "ADOPTED",
+              "successPictureUrl": null,
+              "successDescription": "",
+              "successMethod": "CAMPAIGN",
+              "successAt": "2024-12-25T17:46:14.884Z",
+              "featuredAt": null,
+              "userId": 93037,
+              "fbPostId": "997981789013649",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": null,
+              "vetTags": [],
+              "temperTags": [],
+              "adaptabilityTags": [],
+              "sociabilityTags": [],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 89058,
+              "name": null,
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/cc973484-51d9-4c25-9a6b-cc284553a2d5.jpeg",
+              "species": "DOG",
+              "color": null,
+              "eyesColor": null,
+              "size": "M",
+              "breed": "UNDEFINED",
+              "ageType": "PUPPY",
+              "gender": "M",
+              "reward": 0,
+              "comment": "Filhotes da minha cachorra, estará disponível depois do dia 29/11, irá com todas as vacinas da idade.",
+              "latitude": -23.53104,
+              "longitude": -46.78629,
+              "calculatedAddress": "Osasco, SP, Brasil",
+              "city": "Osasco",
+              "addressRefPoint": null,
+              "neighborhood": null,
+              "postalCode": "06090-015",
+              "happenedAt": "2024-11-17T04:05:54.992Z",
+              "createdAt": "2024-11-17T04:08:50.362Z",
+              "updatedAt": "2024-12-25T17:45:45.893Z",
+              "status": "ADOPTED",
+              "successPictureUrl": null,
+              "successDescription": "",
+              "successMethod": "CAMPAIGN",
+              "successAt": "2024-12-25T17:45:45.940Z",
+              "featuredAt": null,
+              "userId": 93037,
+              "fbPostId": "997983285680166",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": null,
+              "vetTags": [],
+              "temperTags": [],
+              "adaptabilityTags": [],
+              "sociabilityTags": [],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 89059,
+              "name": null,
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/363360f4-67ba-495c-9a44-57bbb8c30c59.jpeg",
+              "species": "DOG",
+              "color": null,
+              "eyesColor": null,
+              "size": "M",
+              "breed": "UNDEFINED",
+              "ageType": "PUPPY",
+              "gender": "M",
+              "reward": 0,
+              "comment": "Filhotes da minha cachorra, estará disponível depois do dia 29/11, irá com todas as vacinas da idade.",
+              "latitude": -23.53104,
+              "longitude": -46.78629,
+              "calculatedAddress": "Osasco, SP, Brasil",
+              "city": "Osasco",
+              "addressRefPoint": null,
+              "neighborhood": null,
+              "postalCode": "06090-015",
+              "happenedAt": "2024-11-17T04:05:54.992Z",
+              "createdAt": "2024-11-17T04:11:17.769Z",
+              "updatedAt": "2024-12-25T17:45:17.631Z",
+              "status": "ADOPTED",
+              "successPictureUrl": null,
+              "successDescription": "",
+              "successMethod": "CAMPAIGN",
+              "successAt": "2024-12-25T17:45:17.722Z",
+              "featuredAt": null,
+              "userId": 93037,
+              "fbPostId": "997984415680053",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": null,
+              "vetTags": [],
+              "temperTags": [],
+              "adaptabilityTags": [],
+              "sociabilityTags": [],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 89060,
+              "name": null,
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/4600b897-60c4-426e-9dbd-8c76e5ea98e6.jpeg",
+              "species": "DOG",
+              "color": null,
+              "eyesColor": null,
+              "size": "M",
+              "breed": "UNDEFINED",
+              "ageType": "PUPPY",
+              "gender": "M",
+              "reward": 0,
+              "comment": "Filhotes da minha cachorra, estará disponível depois do dia 29/11, irá com todas as vacinas da idade.",
+              "latitude": -23.53104,
+              "longitude": -46.78629,
+              "calculatedAddress": "Osasco, SP, Brasil",
+              "city": "Osasco",
+              "addressRefPoint": null,
+              "neighborhood": null,
+              "postalCode": "06090-015",
+              "happenedAt": "2024-11-17T04:05:54.992Z",
+              "createdAt": "2024-11-17T04:12:32.762Z",
+              "updatedAt": "2024-12-25T17:44:51.512Z",
+              "status": "ADOPTED",
+              "successPictureUrl": null,
+              "successDescription": "",
+              "successMethod": "CAMPAIGN",
+              "successAt": "2024-12-25T17:44:51.602Z",
+              "featuredAt": null,
+              "userId": 93037,
+              "fbPostId": "997984882346673",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": null,
+              "vetTags": [],
+              "temperTags": [],
+              "adaptabilityTags": [],
+              "sociabilityTags": [],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            },
+            {
+              "id": 96031,
+              "name": null,
+              "pictureUrl": "https://viumeupet-dev.s3.sa-east-1.amazonaws.com/petImages/9d81dca8-65fd-4409-9582-b64162ecbe06.jpeg",
+              "species": "DOG",
+              "color": null,
+              "eyesColor": null,
+              "size": "M",
+              "breed": "UNDEFINED",
+              "ageType": "PUPPY",
+              "gender": "M",
+              "reward": 0,
+              "comment": "Filhote da minha cachorra, tem 2 meses, já tomou as primeiras vacinas. ",
+              "latitude": -23.53104,
+              "longitude": -46.78629,
+              "calculatedAddress": "Osasco, SP, Brasil",
+              "city": "Osasco",
+              "addressRefPoint": null,
+              "neighborhood": null,
+              "postalCode": "06090-015",
+              "happenedAt": "2024-12-20T10:59:35.971Z",
+              "createdAt": "2024-12-20T11:06:52.424Z",
+              "updatedAt": "2024-12-25T17:44:21.883Z",
+              "status": "ADOPTED",
+              "successPictureUrl": null,
+              "successDescription": "",
+              "successMethod": "CAMPAIGN",
+              "successAt": "2024-12-25T17:44:21.970Z",
+              "featuredAt": null,
+              "userId": 93037,
+              "fbPostId": "1022987789846382",
+              "ownerEmail": null,
+              "ownerName": null,
+              "shelterType": "LT",
+              "shelterName": null,
+              "vetTags": [
+                "VACCINATED",
+                "DEWORMED"
+              ],
+              "temperTags": [
+                "TEMPER_SWEET",
+                "TEMPER_PLAYFUL",
+                "TEMPER_CALM",
+                "TEMPER_SOCIABLE"
+              ],
+              "adaptabilityTags": [
+                "LIVES_WELL_APARTMENT",
+                "LIVES_WELL_BACKYARD"
+              ],
+              "sociabilityTags": [
+                "SOCIABLE_WITH_CHILDREN",
+                "SOCIABLE_WITH_DOGS",
+                "SOCIABLE_WITH_STRANGERS"
+              ],
+              "originAmbassadorKey": null,
+              "originWhitelabelKey": null,
+              "reportCount": 0,
+              "activeCampaign": null
+            }
+          ],
+          "nextCursor": "1"
+        },
+        "meta": {
+          "values": {
+            "data.0.happenedAt": [
+              "Date"
+            ],
+            "data.0.createdAt": [
+              "Date"
+            ],
+            "data.0.updatedAt": [
+              "Date"
+            ],
+            "data.0.successAt": [
+              "Date"
+            ],
+            "data.0.ownerEmail": [
+              "undefined"
+            ],
+            "data.0.ownerName": [
+              "undefined"
+            ],
+            "data.0.activeCampaign": [
+              "undefined"
+            ],
+            "data.1.happenedAt": [
+              "Date"
+            ],
+            "data.1.createdAt": [
+              "Date"
+            ],
+            "data.1.updatedAt": [
+              "Date"
+            ],
+            "data.1.successAt": [
+              "Date"
+            ],
+            "data.1.ownerEmail": [
+              "undefined"
+            ],
+            "data.1.ownerName": [
+              "undefined"
+            ],
+            "data.1.activeCampaign": [
+              "undefined"
+            ],
+            "data.2.happenedAt": [
+              "Date"
+            ],
+            "data.2.createdAt": [
+              "Date"
+            ],
+            "data.2.updatedAt": [
+              "Date"
+            ],
+            "data.2.successAt": [
+              "Date"
+            ],
+            "data.2.ownerEmail": [
+              "undefined"
+            ],
+            "data.2.ownerName": [
+              "undefined"
+            ],
+            "data.2.activeCampaign": [
+              "undefined"
+            ],
+            "data.3.happenedAt": [
+              "Date"
+            ],
+            "data.3.createdAt": [
+              "Date"
+            ],
+            "data.3.updatedAt": [
+              "Date"
+            ],
+            "data.3.successAt": [
+              "Date"
+            ],
+            "data.3.ownerEmail": [
+              "undefined"
+            ],
+            "data.3.ownerName": [
+              "undefined"
+            ],
+            "data.3.activeCampaign": [
+              "undefined"
+            ],
+            "data.4.happenedAt": [
+              "Date"
+            ],
+            "data.4.createdAt": [
+              "Date"
+            ],
+            "data.4.updatedAt": [
+              "Date"
+            ],
+            "data.4.successAt": [
+              "Date"
+            ],
+            "data.4.ownerEmail": [
+              "undefined"
+            ],
+            "data.4.ownerName": [
+              "undefined"
+            ],
+            "data.4.activeCampaign": [
+              "undefined"
+            ],
+            "data.5.happenedAt": [
+              "Date"
+            ],
+            "data.5.createdAt": [
+              "Date"
+            ],
+            "data.5.updatedAt": [
+              "Date"
+            ],
+            "data.5.successAt": [
+              "Date"
+            ],
+            "data.5.ownerEmail": [
+              "undefined"
+            ],
+            "data.5.ownerName": [
+              "undefined"
+            ],
+            "data.5.activeCampaign": [
+              "undefined"
+            ],
+            "data.6.happenedAt": [
+              "Date"
+            ],
+            "data.6.createdAt": [
+              "Date"
+            ],
+            "data.6.updatedAt": [
+              "Date"
+            ],
+            "data.6.successAt": [
+              "Date"
+            ],
+            "data.6.ownerEmail": [
+              "undefined"
+            ],
+            "data.6.ownerName": [
+              "undefined"
+            ],
+            "data.6.activeCampaign": [
+              "undefined"
+            ],
+            "data.7.happenedAt": [
+              "Date"
+            ],
+            "data.7.createdAt": [
+              "Date"
+            ],
+            "data.7.updatedAt": [
+              "Date"
+            ],
+            "data.7.successAt": [
+              "Date"
+            ],
+            "data.7.ownerEmail": [
+              "undefined"
+            ],
+            "data.7.ownerName": [
+              "undefined"
+            ],
+            "data.7.activeCampaign": [
+              "undefined"
+            ],
+            "data.8.happenedAt": [
+              "Date"
+            ],
+            "data.8.createdAt": [
+              "Date"
+            ],
+            "data.8.updatedAt": [
+              "Date"
+            ],
+            "data.8.successAt": [
+              "Date"
+            ],
+            "data.8.ownerEmail": [
+              "undefined"
+            ],
+            "data.8.ownerName": [
+              "undefined"
+            ],
+            "data.8.activeCampaign": [
+              "undefined"
+            ],
+            "data.9.happenedAt": [
+              "Date"
+            ],
+            "data.9.createdAt": [
+              "Date"
+            ],
+            "data.9.updatedAt": [
+              "Date"
+            ],
+            "data.9.successAt": [
+              "Date"
+            ],
+            "data.9.ownerEmail": [
+              "undefined"
+            ],
+            "data.9.ownerName": [
+              "undefined"
+            ],
+            "data.9.activeCampaign": [
+              "undefined"
+            ]
+          }
+        }
+      }
+    }
+  }
+]

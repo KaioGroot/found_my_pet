@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "AVENIDA CARLOS PEREIRA DE MELO 1817",
+    "breed": "rusky",
+    "age": "32",
+    "weight": "2",
+    "city": "Rorainópolis",
+    "state": "RR",
+    "photo": "estrutura de mensagens.png"
+  },
+  {
+    "id": 2,
+    "name": "gavião falcon",
+    "breed": "rusky",
+    "age": "2",
+    "weight": "23",
+    "city": "Boa vista",
+    "state": "Roraima",
+    "photo": "asdsa.png"
+  },
+  {
+    "id": 3,
+    "name": "thor",
+    "breed": "siamês",
+    "age": "1",
+    "weight": "6",
+    "city": "xapuri",
+    "state": "acre",
+    "photo": "asdsa.png"
+  },
+  {
+    "id": 4,
+    "name": "VANDER JORGE DA SILVA MAGALHAES JORGE",
+    "breed": "rusky",
+    "age": "2",
+    "weight": "4",
+    "city": "Rorainópolis",
+    "state": "Roraima",
+    "photo": "foundmypet.png"
+  },
+  {
+    "id": 5,
+    "name": "paçoca",
+    "breed": "pinscher",
+    "age": "2",
+    "weight": "5",
+    "city": "Rorainópolis",
+    "state": "Roraima",
+    "photo": "asdsa.png"
+  }
+]
