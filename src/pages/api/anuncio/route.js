@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     console.log(newPet);
     pets.push(newPet);
     fs.writeFileSync(filePath, JSON.stringify(pets, null, 2));
-    res.status(201).json(newPet);
+    res.status(200).json(newPet);
     return;
   } else if (req.method === "GET") {
     const pets = JSON.parse(data);
