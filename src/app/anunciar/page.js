@@ -39,7 +39,7 @@ export default function Anunciar() {
     formData.append('photo', pet.photo);
 
     try {
-      const response = await fetch('/api/anuncio/route', {
+      const response = await fetch('https://found-my-pet-nu.vercel.app/api/anuncio/route', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
