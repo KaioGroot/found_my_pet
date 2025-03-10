@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     async function pegarPets() {
-      const response = await fetch('http://localhost:3000/encontrados.json', {
+      const response = await fetch('/encontrados.json', {
         method: 'GET',
         credentials: 'include',
         mode: 'cors',
