@@ -46,9 +46,7 @@ export default function Anunciar() {
         },
         body: JSON.stringify(pet),
       });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      
       alert('Anúncio enviado com sucesso!');
 
       const createTable = async () => {
