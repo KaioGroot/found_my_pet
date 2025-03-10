@@ -39,7 +39,7 @@ export default function Anunciar() {
     formData.append('photo', pet.photo);
 
     try {
-      const response = await fetch('http://localhost:3000/api/anuncio/route', {
+      const response = await fetch('/api/anuncio/route', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
