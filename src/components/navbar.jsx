@@ -47,11 +47,8 @@ export default function Navbar() {
                             <Link className="px-2 py-2 rounded border border-gray-200" href="/perdidos">
                                 Achados e Perdidos
                             </Link>
-                            <Link className="px-2 py-2 rounded border border-gray-200" href="/perdidos/dogs">
+                            <Link className="px-2 py-2 rounded border border-gray-200" href="/como-funciona">
                                 Como funciona
-                            </Link>
-                            <Link className="px-2 py-2 rounded border border-gray-200" href="/perdidos/others">
-                                Outros
                             </Link>
                         </div>
                     )}
