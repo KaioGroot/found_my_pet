@@ -3,22 +3,34 @@ import { useState, useEffect } from 'react';
 import { db } from '@/connection/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import Navbar from '@/components/navbar';
+import Image from 'next/image';
 
 export default function Achados() {
     const [perdidos, setPerdidos] = useState([]);
     const [docPerdidos, setDocPerdidos] = useState([]);
     const [docencontrados, setDocEncontrados] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    useEffect(function () {
+    useEffect(() => {
         const pegardados = async function () {
-            const collectionRef = collection(db, 'pets');
-            const documentoss = await getDocs(collectionRef);
-            const petsData = [];
-            documentoss.forEach((doc) => {
-                petsData.push(doc.data());
-            });
-            setPerdidos(petsData);
+            try {
+                const collectionRef = collection(db, 'pets');
+                const documentoss = await getDocs(collectionRef);
+                const petsData = [];
+                documentoss.forEach((doc) => {
+                    const data = doc.data();
+                    // Verifica se a URL da imagem existe
+                    if (data.photoURL) {
+                        petsData.push(data);
+                    }
+                });
+                setPerdidos(petsData);
+            } catch (error) {
+                console.error('Erro ao buscar pets:', error);
+            } finally {
+                setLoading(false);
+            }
         };
         pegardados();
     }, []);
@@ -32,6 +44,14 @@ export default function Achados() {
         };
         verificarPetPerdido();
     }, [perdidos]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -49,18 +69,23 @@ export default function Achados() {
                             className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
                         >
                             <div className="relative">
-                                <div className="absolute top-0 left-0 right-0 bg-red-500 p-2 text-white font-bold text-center">Perdido</div>
-                                <img
-                                    src={pet.photoURL}
-                                    className="w-full h-48 object-cover cursor-pointer"
-                                    alt={pet.name}
-                                    onClick={() => setSelectedImage(pet.photoURL)}
-                                />
+                                <div className="absolute top-0 left-0 right-0 bg-red-500 p-2 text-white font-bold text-center z-10">Perdido</div>
+                                <div className="relative w-full h-48">
+                                    <Image
+                                        src={pet.photoURL}
+                                        alt={pet.name}
+                                        fill
+                                        className="object-cover cursor-pointer"
+                                        onClick={() => setSelectedImage(pet.photoURL)}
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                        priority={index < 4} // Prioriza o carregamento das primeiras 4 imagens
+                                    />
+                                </div>
                             </div>
                             <div className="p-4">
                                 <h2 className="text-xl font-bold text-gray-800">{pet.name}</h2>
                                 <p className="text-gray-600 mt-1">{pet.breed}</p>
-                                <p className="text-gray-500 text-sm mt-2">{pet.description}</p>
+                                <p className="text-gray-500 text-sm mt-2 line-clamp-2">{pet.description}</p>
                                 <div className="mt-4 flex justify-between items-center">
                                     <div>
                                         <p className="text-gray-700 font-semibold">{pet.city}</p>
@@ -85,11 +110,21 @@ export default function Achados() {
                         <div className="relative max-w-4xl w-full">
                             <button
                                 className="absolute top-4 right-4 text-white text-xl font-bold bg-red-500 w-8 h-8 rounded-full"
-                                onClick={() => setSelectedImage(null)}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setSelectedImage(null);
+                                }}
                             >
                                 ×
                             </button>
-                            <img src={selectedImage} alt="Imagem ampliada" className="w-full h-auto rounded-lg" />
+                            <Image
+                                src={selectedImage}
+                                alt="Imagem ampliada"
+                                width={1200}
+                                height={800}
+                                className="w-full h-auto rounded-lg"
+                                priority
+                            />
                         </div>
                     </div>
                 )}
