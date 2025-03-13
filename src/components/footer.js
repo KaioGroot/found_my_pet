@@ -18,7 +18,7 @@ export default function Footer() {
               <a className="underline" href="https://api.whatsapp.com/send?phone=5511951234567">+55 11 95123-4567</a>
             </p>
             <p className="text-xs mt-2">
-              <a className="underline" href="https://www.instagram.com/luanfonceca/">@kaiowdev</a>
+              <a className="underline" href="https://www.instagram.com/kaiowdev/">@kaiowdev</a>
             </p>
           </div>
         </div>
