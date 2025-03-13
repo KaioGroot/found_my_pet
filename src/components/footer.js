@@ -12,10 +12,10 @@ export default function Footer() {
           <div className="flex flex-col md:w-2/3 mt-4 md:mt-0">
             <h3 className="text-xl font-bold">Contato</h3>
             <p className="text-xs mt-2">
-              <a className="underline" href="mailto:contato@primeiroprojeto.com.br">contato@primeiroprojeto.com.br</a>
+              <a className="underline" href="mailto:contato@primeiroprojeto.com.br">kaiomagalhaesxp@gmail.com</a>
             </p>
             <p className="text-xs mt-2">
-              <a className="underline" href="https://api.whatsapp.com/send?phone=5511951234567">+55 11 95123-4567</a>
+              <a className="underline" href="https://api.whatsapp.com/send?phone=5511951234567">+55 (68) 99231-6401</a>
             </p>
             <p className="text-xs mt-2">
               <a className="underline" href="https://www.instagram.com/kaiowdev/">@kaiowdev</a>
