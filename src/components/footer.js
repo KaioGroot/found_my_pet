@@ -6,7 +6,7 @@ export default function Footer() {
           <div className="flex flex-col md:w-1/3">
             <img className="w-32" src="/images/logo-white.svg" alt="Logo" />
             <p className="text-xs mt-4">
-              Desenvolvido com amor por <a className="underline" href="https://github.com/luanfonceca">Kaio Ferreira</a>
+              Desenvolvido com amor por <a className="underline" href="https://github.com/kaiogroot/">Kaio Ferreira</a>
             </p>
           </div>
           <div className="flex flex-col md:w-2/3 mt-4 md:mt-0">
