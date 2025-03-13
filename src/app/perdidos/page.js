@@ -4,13 +4,22 @@ import { db } from '@/connection/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import Navbar from '@/components/navbar';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function Achados() {
+    const router = useRouter();
     const [perdidos, setPerdidos] = useState([]);
     const [docPerdidos, setDocPerdidos] = useState([]);
     const [docencontrados, setDocEncontrados] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filters, setFilters] = useState({
+        city: '',
+        state: '',
+        breed: '',
+        age: '',
+    });
 
     useEffect(() => {
         const pegardados = async function () {
@@ -20,9 +29,12 @@ export default function Achados() {
                 const petsData = [];
                 documentoss.forEach((doc) => {
                     const data = doc.data();
-                    // Verifica se a URL da imagem existe
+                    // Verifica se a URL da imagem existe e adiciona o ID do documento
                     if (data.photoURL) {
-                        petsData.push(data);
+                        petsData.push({
+                            ...data,
+                            id: doc.id,
+                        });
                     }
                 });
                 setPerdidos(petsData);
@@ -45,6 +57,25 @@ export default function Achados() {
         verificarPetPerdido();
     }, [perdidos]);
 
+    const filteredPets = docPerdidos.filter((pet) => {
+        const matchesSearch =
+            pet.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            pet.breed.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            pet.description.toLowerCase().includes(searchTerm.toLowerCase());
+
+        const matchesFilters =
+            (!filters.city || pet.city.toLowerCase().includes(filters.city.toLowerCase())) &&
+            (!filters.state || pet.state.toLowerCase().includes(filters.state.toLowerCase())) &&
+            (!filters.breed || pet.breed.toLowerCase().includes(filters.breed.toLowerCase())) &&
+            (!filters.age || pet.age.toString().includes(filters.age));
+
+        return matchesSearch && matchesFilters;
+    });
+
+    const handlePetClick = (pet) => {
+        router.push(`/pet/${pet.id}`);
+    };
+
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center">
@@ -62,11 +93,69 @@ export default function Achados() {
                     <span className="neon-glow"></span>
                 </div>
 
+                {/* Barra de Busca e Filtros */}
+                <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
+                    <div className="flex flex-col md:flex-row gap-4">
+                        <div className="flex-1">
+                            <input
+                                type="text"
+                                placeholder="Buscar por nome, raça ou descrição..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
+                            />
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <input
+                                type="text"
+                                placeholder="Cidade"
+                                value={filters.city}
+                                onChange={(e) => setFilters({ ...filters, city: e.target.value })}
+                                className="p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Estado"
+                                value={filters.state}
+                                onChange={(e) => setFilters({ ...filters, state: e.target.value })}
+                                className="p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Raça"
+                                value={filters.breed}
+                                onChange={(e) => setFilters({ ...filters, breed: e.target.value })}
+                                className="p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
+                            />
+                            <input
+                                type="number"
+                                placeholder="Idade"
+                                value={filters.age}
+                                onChange={(e) => setFilters({ ...filters, age: e.target.value })}
+                                className="p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
+                            />
+                        </div>
+                    </div>
+                    <div className="mt-4 flex justify-between items-center">
+                        <p className="text-gray-600">{filteredPets.length} pets encontrados</p>
+                        <button
+                            onClick={() => {
+                                setSearchTerm('');
+                                setFilters({ city: '', state: '', breed: '', age: '' });
+                            }}
+                            className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
+                        >
+                            Limpar Filtros
+                        </button>
+                    </div>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
-                    {docPerdidos.map((pet, index) => (
+                    {filteredPets.map((pet, index) => (
                         <div
                             key={index}
-                            className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+                            className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer"
+                            onClick={() => handlePetClick(pet)}
                         >
                             <div className="relative">
                                 <div className="absolute top-0 left-0 right-0 bg-red-500 p-2 text-white font-bold text-center z-10">Perdido</div>
@@ -75,10 +164,9 @@ export default function Achados() {
                                         src={pet.photoURL}
                                         alt={pet.name}
                                         fill
-                                        className="object-cover cursor-pointer"
-                                        onClick={() => setSelectedImage(pet.photoURL)}
+                                        className="object-cover"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                        priority={index < 4} // Prioriza o carregamento das primeiras 4 imagens
+                                        priority={index < 4}
                                     />
                                 </div>
                             </div>
@@ -129,9 +217,9 @@ export default function Achados() {
                     </div>
                 )}
 
-                {docPerdidos.length === 0 && (
+                {filteredPets.length === 0 && (
                     <div className="text-center mt-10">
-                        <p className="text-xl text-gray-600">Nenhum pet perdido cadastrado no momento.</p>
+                        <p className="text-xl text-gray-600">Nenhum pet encontrado com os filtros atuais.</p>
                     </div>
                 )}
             </div>
