@@ -36,6 +36,9 @@ export default function Navbar() {
                         <Link href="/encontrados" className="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">
                             Pets Encontrados
                         </Link>
+                        <Link href="/doacoes" className="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium">
+                            Pets para Doação
+                        </Link>
                         {user ? (
                             <>
                                 <Link
@@ -133,6 +136,13 @@ export default function Navbar() {
                         onClick={() => setIsOpen(false)}
                     >
                         Pets Encontrados
+                    </Link>
+                    <Link
+                        href="/doacoes"
+                        className="block text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-base font-medium"
+                        onClick={() => setIsOpen(false)}
+                    >
+                        Pets para Doação
                     </Link>
                     {user ? (
                         <>

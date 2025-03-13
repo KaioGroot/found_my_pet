@@ -289,8 +289,72 @@ export default function Anunciar() {
                                 <option value="">Selecione uma opção</option>
                                 <option value="ENCONTREI UM PET">Encontrei um pet</option>
                                 <option value="PERDI UM PET">Perdi um pet</option>
+                                <option value="DOACAO">Pet para doação</option>
                             </select>
                         </div>
+
+                        {pet.category === 'DOACAO' && (
+                            <>
+                                <div className="flex flex-col">
+                                    <label htmlFor="vacinas" className="font-bold mb-2">
+                                        Vacinas
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="vacinas"
+                                        value={pet.vacinas || ''}
+                                        onChange={(e) => setPet({ ...pet, vacinas: e.target.value })}
+                                        className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                        placeholder="Ex: V8, Antirrábica, etc."
+                                    />
+                                </div>
+
+                                <div className="flex flex-col">
+                                    <label htmlFor="castrado" className="font-bold mb-2">
+                                        Castrado
+                                    </label>
+                                    <select
+                                        id="castrado"
+                                        value={pet.castrado || ''}
+                                        onChange={(e) => setPet({ ...pet, castrado: e.target.value })}
+                                        className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                        required
+                                    >
+                                        <option value="">Selecione uma opção</option>
+                                        <option value="SIM">Sim</option>
+                                        <option value="NAO">Não</option>
+                                    </select>
+                                </div>
+
+                                <div className="flex flex-col">
+                                    <label htmlFor="temperamento" className="font-bold mb-2">
+                                        Temperamento
+                                    </label>
+                                    <textarea
+                                        id="temperamento"
+                                        value={pet.temperamento || ''}
+                                        onChange={(e) => setPet({ ...pet, temperamento: e.target.value })}
+                                        className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                        placeholder="Descreva o temperamento do pet (dócil, brincalhão, etc.)"
+                                        rows="3"
+                                    ></textarea>
+                                </div>
+
+                                <div className="flex flex-col">
+                                    <label htmlFor="requisitos" className="font-bold mb-2">
+                                        Requisitos para Adoção
+                                    </label>
+                                    <textarea
+                                        id="requisitos"
+                                        value={pet.requisitos || ''}
+                                        onChange={(e) => setPet({ ...pet, requisitos: e.target.value })}
+                                        className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                        placeholder="Ex: Termo de adoção, visita prévia, etc."
+                                        rows="3"
+                                    ></textarea>
+                                </div>
+                            </>
+                        )}
 
                         <div className="flex flex-col">
                             <label htmlFor="description" className="font-bold mb-2">
