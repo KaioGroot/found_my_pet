@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { db } from '@/connection/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { useParams } from 'next/navigation';
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/nav';
 import Image from 'next/image';
 import PetMap from '@/components/PetMap';
 
