@@ -11,7 +11,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
 } from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/connection/firebase';
 
 const AuthContext = createContext({});
@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
     const auth = getAuth();
 
     // Registrar usuário
-    const signup = async (email, password, name) => {
+    const signup = async (email, password, name, phone) => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
@@ -35,8 +35,13 @@ export function AuthProvider({ children }) {
             await setDoc(doc(db, 'users', userCredential.user.uid), {
                 name,
                 email,
+                phone,
+                isVerified: false,
+                verificationBadge: null,
+                verificationDate: null,
+                isModerator: false,
+                status: 'active',
                 createdAt: new Date().toISOString(),
-                pets: [], // Array para armazenar IDs dos pets do usuário
             });
 
             return userCredential;
@@ -67,8 +72,13 @@ export function AuthProvider({ children }) {
                 await setDoc(doc(db, 'users', result.user.uid), {
                     name: result.user.displayName,
                     email: result.user.email,
+                    phone: '',
+                    isVerified: false,
+                    verificationBadge: null,
+                    verificationDate: null,
+                    isModerator: false,
+                    status: 'active',
                     createdAt: new Date().toISOString(),
-                    pets: [],
                 });
             }
 
@@ -100,12 +110,47 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) {
-                // Buscar dados adicionais do usuário no Firestore
-                const userDoc = await getDoc(doc(db, 'users', user.uid));
-                setUser({
-                    ...user,
-                    ...userDoc.data(),
-                });
+                const docRef = doc(db, 'users', user.uid);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    setUser({
+                        uid: user.uid,
+                        email: user.email,
+                        name: docSnap.data().name,
+                        phone: docSnap.data().phone,
+                        isVerified: docSnap.data().isVerified || false,
+                        verificationBadge: docSnap.data().verificationBadge || null,
+                        verificationDate: docSnap.data().verificationDate || null,
+                        isModerator: docSnap.data().isModerator || false,
+                        status: docSnap.data().status || 'active',
+                    });
+                } else {
+                    // Criar documento do usuário se não existir
+                    await setDoc(docRef, {
+                        email: user.email,
+                        name: user.displayName || '',
+                        phone: '',
+                        isVerified: false,
+                        verificationBadge: null,
+                        verificationDate: null,
+                        isModerator: false,
+                        status: 'active',
+                        createdAt: new Date().toISOString(),
+                    });
+
+                    setUser({
+                        uid: user.uid,
+                        email: user.email,
+                        name: user.displayName || '',
+                        phone: '',
+                        isVerified: false,
+                        verificationBadge: null,
+                        verificationDate: null,
+                        isModerator: false,
+                        status: 'active',
+                    });
+                }
             } else {
                 setUser(null);
             }
@@ -133,6 +178,44 @@ export function AuthProvider({ children }) {
         return errorMessages[errorCode] || errorMessages.default;
     };
 
+    const updateUserProfile = async (data) => {
+        if (!user) return;
+
+        const userRef = doc(db, 'users', user.uid);
+        await updateDoc(userRef, data);
+
+        setUser((prev) => ({
+            ...prev,
+            ...data,
+        }));
+    };
+
+    const requestVerification = async (documentData) => {
+        if (!user) return;
+
+        const verificationRef = doc(db, 'verificationRequests', user.uid);
+        await setDoc(verificationRef, {
+            userId: user.uid,
+            documentData,
+            status: 'pending',
+            createdAt: new Date().toISOString(),
+        });
+    };
+
+    const setUserAsModerator = async (userId) => {
+        const userRef = doc(db, 'users', userId);
+        await updateDoc(userRef, {
+            isModerator: true,
+        });
+
+        if (user && user.uid === userId) {
+            setUser((prev) => ({
+                ...prev,
+                isModerator: true,
+            }));
+        }
+    };
+
     const value = {
         user,
         loading,
@@ -141,6 +224,9 @@ export function AuthProvider({ children }) {
         loginWithGoogle,
         logout,
         resetPassword,
+        updateUserProfile,
+        requestVerification,
+        setUserAsModerator,
     };
 
     return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
