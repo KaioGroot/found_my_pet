@@ -85,11 +85,31 @@ export default function PetDetails() {
                                             <p className="text-sm text-gray-600">Peso</p>
                                             <p className="font-semibold">{pet.weight}kg</p>
                                         </div>
+                                        <div className="bg-purple-100 p-3 rounded-lg">
+                                            <p className="text-sm text-gray-600">Porte</p>
+                                            <p className="font-semibold">{pet.size || 'Não informado'}</p>
+                                        </div>
                                     </div>
 
                                     <div>
                                         <h2 className="text-xl font-semibold mb-2">Descrição</h2>
                                         <p className="text-gray-600">{pet.description}</p>
+                                    </div>
+
+                                    <div>
+                                        <h2 className="text-xl font-semibold mb-2">Informações do Desaparecimento</h2>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div className="bg-purple-100 p-3 rounded-lg">
+                                                <p className="text-sm text-gray-600">Data</p>
+                                                <p className="font-semibold">
+                                                    {pet.lastSeenDate ? new Date(pet.lastSeenDate).toLocaleDateString('pt-BR') : 'Não informado'}
+                                                </p>
+                                            </div>
+                                            <div className="bg-purple-100 p-3 rounded-lg">
+                                                <p className="text-sm text-gray-600">Local</p>
+                                                <p className="font-semibold">{pet.lastSeenLocation || 'Não informado'}</p>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div>
@@ -114,13 +134,13 @@ export default function PetDetails() {
                         </div>
 
                         {/* Botões de ação */}
-                        <div className="mt-8 flex gap-4">
+                        <div className="mt-8 flex flex-wrap gap-4">
                             <button
                                 onClick={() => window.open(`https://wa.me/${pet.phone}`, '_blank')}
                                 className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.287.129.332.202.045.073.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z" />
+                                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.287.129.332.202.045.073.045.419-.1.824z" />
                                 </svg>
                                 Contatar via WhatsApp
                             </button>
@@ -132,6 +152,29 @@ export default function PetDetails() {
                                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                                 </svg>
                                 Enviar E-mail
+                            </button>
+
+                            {/* Botões de compartilhamento */}
+                            <button
+                                onClick={() =>
+                                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')
+                                }
+                                className="bg-[#1877f2] text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2"
+                            >
+                                Compartilhar no Facebook
+                            </button>
+                            <button
+                                onClick={() =>
+                                    window.open(
+                                        `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Ajude a encontrar ${
+                                            pet.name
+                                        }!`,
+                                        '_blank'
+                                    )
+                                }
+                                className="bg-[#1da1f2] text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2"
+                            >
+                                Compartilhar no Twitter
                             </button>
                         </div>
                     </div>

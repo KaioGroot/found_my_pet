@@ -19,6 +19,12 @@ export default function Achados() {
         state: '',
         breed: '',
         age: '',
+        size: '',
+        color: '',
+        dateRange: {
+            start: '',
+            end: '',
+        },
     });
 
     useEffect(() => {
@@ -59,17 +65,31 @@ export default function Achados() {
 
     const filteredPets = docPerdidos.filter((pet) => {
         const matchesSearch =
-            pet.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            pet.breed.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            pet.description.toLowerCase().includes(searchTerm.toLowerCase());
+            pet.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            !searchTerm ||
+            pet.breed?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            !searchTerm ||
+            pet.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            !searchTerm;
 
         const matchesFilters =
-            (!filters.city || pet.city.toLowerCase().includes(filters.city.toLowerCase())) &&
-            (!filters.state || pet.state.toLowerCase().includes(filters.state.toLowerCase())) &&
-            (!filters.breed || pet.breed.toLowerCase().includes(filters.breed.toLowerCase())) &&
-            (!filters.age || pet.age.toString().includes(filters.age));
+            (!filters.city || pet.city?.toLowerCase().includes(filters.city.toLowerCase())) &&
+            (!filters.state || pet.state?.toLowerCase().includes(filters.state.toLowerCase())) &&
+            (!filters.breed || pet.breed?.toLowerCase().includes(filters.breed.toLowerCase())) &&
+            (!filters.age || pet.age?.toString().includes(filters.age)) &&
+            (!filters.size || pet.size === filters.size) &&
+            (!filters.color || pet.color?.toLowerCase().includes(filters.color.toLowerCase())) &&
+            (!filters.dateRange.start || !pet.lastSeenDate || new Date(pet.lastSeenDate) >= new Date(filters.dateRange.start)) &&
+            (!filters.dateRange.end || !pet.lastSeenDate || new Date(pet.lastSeenDate) <= new Date(filters.dateRange.end));
 
         return matchesSearch && matchesFilters;
+    });
+
+    // Ordenar por data mais recente
+    const sortedPets = [...filteredPets].sort((a, b) => {
+        if (!a.lastSeenDate) return 1;
+        if (!b.lastSeenDate) return -1;
+        return new Date(b.lastSeenDate) - new Date(a.lastSeenDate);
     });
 
     const handlePetClick = (pet) => {
@@ -95,7 +115,7 @@ export default function Achados() {
 
                 {/* Barra de Busca e Filtros */}
                 <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
-                    <div className="flex flex-col md:flex-row gap-4">
+                    <div className="flex flex-col gap-4">
                         <div className="flex-1">
                             <input
                                 type="text"
@@ -105,6 +125,7 @@ export default function Achados() {
                                 className="w-full p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
                             />
                         </div>
+
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             <input
                                 type="text"
@@ -135,13 +156,69 @@ export default function Achados() {
                                 className="p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
                             />
                         </div>
+
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <select
+                                value={filters.size}
+                                onChange={(e) => setFilters({ ...filters, size: e.target.value })}
+                                className="p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
+                            >
+                                <option value="">Todos os portes</option>
+                                <option value="PEQUENO">Pequeno</option>
+                                <option value="MEDIO">Médio</option>
+                                <option value="GRANDE">Grande</option>
+                            </select>
+                            <input
+                                type="text"
+                                placeholder="Cor"
+                                value={filters.color}
+                                onChange={(e) => setFilters({ ...filters, color: e.target.value })}
+                                className="p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
+                            />
+                            <input
+                                type="date"
+                                placeholder="Data início"
+                                value={filters.dateRange.start}
+                                onChange={(e) =>
+                                    setFilters({
+                                        ...filters,
+                                        dateRange: { ...filters.dateRange, start: e.target.value },
+                                    })
+                                }
+                                className="p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
+                            />
+                            <input
+                                type="date"
+                                placeholder="Data fim"
+                                value={filters.dateRange.end}
+                                onChange={(e) =>
+                                    setFilters({
+                                        ...filters,
+                                        dateRange: { ...filters.dateRange, end: e.target.value },
+                                    })
+                                }
+                                className="p-3 rounded-lg border-2 border-purple-200 focus:border-purple-500 focus:outline-none"
+                            />
+                        </div>
                     </div>
+
                     <div className="mt-4 flex justify-between items-center">
                         <p className="text-gray-600">{filteredPets.length} pets encontrados</p>
                         <button
                             onClick={() => {
                                 setSearchTerm('');
-                                setFilters({ city: '', state: '', breed: '', age: '' });
+                                setFilters({
+                                    city: '',
+                                    state: '',
+                                    breed: '',
+                                    age: '',
+                                    size: '',
+                                    color: '',
+                                    dateRange: {
+                                        start: '',
+                                        end: '',
+                                    },
+                                });
                             }}
                             className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
                         >
@@ -151,7 +228,7 @@ export default function Achados() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
-                    {filteredPets.map((pet, index) => (
+                    {sortedPets.map((pet, index) => (
                         <div
                             key={index}
                             className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cursor-pointer"

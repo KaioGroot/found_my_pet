@@ -16,6 +16,13 @@ export default function Anunciar() {
         description: '',
         photoURL: '',
         category: '',
+        phone: '',
+        email: '',
+        status: 'PROCURANDO',
+        color: '',
+        size: '',
+        lastSeenDate: '',
+        lastSeenLocation: '',
     });
 
     const [uploading, setUploading] = useState(false);
@@ -93,6 +100,13 @@ export default function Anunciar() {
                 description: '',
                 photoURL: '',
                 category: '',
+                phone: '',
+                email: '',
+                status: 'PROCURANDO',
+                color: '',
+                size: '',
+                lastSeenDate: '',
+                lastSeenLocation: '',
             });
             setPreview(null);
         } catch (error) {
@@ -279,6 +293,102 @@ export default function Anunciar() {
                             rows="4"
                             required
                         ></textarea>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="flex flex-col">
+                            <label htmlFor="phone" className="font-bold mb-2">
+                                Telefone (WhatsApp)
+                            </label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                value={pet.phone}
+                                onChange={(e) => setPet({ ...pet, phone: e.target.value })}
+                                className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                required
+                                placeholder="(00) 00000-0000"
+                            />
+                        </div>
+
+                        <div className="flex flex-col">
+                            <label htmlFor="email" className="font-bold mb-2">
+                                Email
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                value={pet.email}
+                                onChange={(e) => setPet({ ...pet, email: e.target.value })}
+                                className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="flex flex-col">
+                            <label htmlFor="color" className="font-bold mb-2">
+                                Cor
+                            </label>
+                            <input
+                                type="text"
+                                id="color"
+                                value={pet.color}
+                                onChange={(e) => setPet({ ...pet, color: e.target.value })}
+                                className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                required
+                            />
+                        </div>
+
+                        <div className="flex flex-col">
+                            <label htmlFor="size" className="font-bold mb-2">
+                                Porte
+                            </label>
+                            <select
+                                id="size"
+                                value={pet.size}
+                                onChange={(e) => setPet({ ...pet, size: e.target.value })}
+                                className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                required
+                            >
+                                <option value="">Selecione o porte</option>
+                                <option value="PEQUENO">Pequeno</option>
+                                <option value="MEDIO">Médio</option>
+                                <option value="GRANDE">Grande</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="flex flex-col">
+                            <label htmlFor="lastSeenDate" className="font-bold mb-2">
+                                Data do Desaparecimento
+                            </label>
+                            <input
+                                type="date"
+                                id="lastSeenDate"
+                                value={pet.lastSeenDate}
+                                onChange={(e) => setPet({ ...pet, lastSeenDate: e.target.value })}
+                                className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                required
+                            />
+                        </div>
+
+                        <div className="flex flex-col">
+                            <label htmlFor="lastSeenLocation" className="font-bold mb-2">
+                                Local do Desaparecimento
+                            </label>
+                            <input
+                                type="text"
+                                id="lastSeenLocation"
+                                value={pet.lastSeenLocation}
+                                onChange={(e) => setPet({ ...pet, lastSeenLocation: e.target.value })}
+                                className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                placeholder="Rua, Bairro, Ponto de Referência"
+                                required
+                            />
+                        </div>
                     </div>
 
                     <button
