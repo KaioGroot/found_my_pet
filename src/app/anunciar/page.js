@@ -421,14 +421,25 @@ export default function Anunciar() {
                                         <label htmlFor="reward" className="font-bold mb-2">
                                             Recompensa
                                         </label>
-                                        <input
-                                            type="text"
-                                            id="reward"
-                                            value={pet.reward}
-                                            onChange={(e) => setPet({ ...pet, reward: e.target.value })}
-                                            className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
-                                            placeholder="Valor da recompensa (opcional)"
-                                        />
+                                        <div className="relative">
+                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <span className="text-gray-500 sm:text-sm">R$</span>
+                                            </div>
+                                            <input
+                                                type="number"
+                                                id="reward"
+                                                value={pet.reward}
+                                                onChange={(e) => setPet({ ...pet, reward: parseFloat(e.target.value) })}
+                                                className="w-full py-2 pl-12 pr-4 rounded-md border-2 border-purple-600"
+                                                placeholder="0,00"
+                                                min="0"
+                                                step="0.01"
+                                            />
+                                            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                                <span className="text-gray-500 text-sm">Opcional</span>
+                                            </div>
+                                        </div>
+                                        <p className="mt-1 text-sm text-gray-500">Deixe em branco se não deseja oferecer recompensa</p>
                                     </div>
                                 )}
                             </>
