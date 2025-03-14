@@ -2,68 +2,103 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { addDoc, collection, getDocs, updateDoc, doc, arrayUnion } from 'firebase/firestore';
-import { db } from '../../connection/firebase';
+import { db, storage } from '@/connection/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useAuth } from '@/contexts/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Navbar from '@/components/navbar';
 
 export default function Anunciar() {
     const { user } = useAuth();
+    const router = useRouter();
+    const [currentStep, setCurrentStep] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [preview, setPreview] = useState(null);
     const [pet, setPet] = useState({
+        category: '',
         name: '',
+        species: '',
         breed: '',
         age: '',
         weight: '',
+        color: '',
+        size: '',
+        gender: '',
+        lastSeenDate: '',
+        lastSeenLocation: '',
         city: '',
         state: '',
         description: '',
         photoURL: '',
-        category: '',
-        phone: '',
-        email: '',
-        status: 'PROCURANDO',
-        color: '',
-        size: '',
-        lastSeenDate: '',
-        lastSeenLocation: '',
-        userId: '',
-        createdAt: '',
+        userId: user?.uid || '',
+        userEmail: user?.email || '',
+        userPhone: user?.phone || '',
+        status: 'ATIVO',
+        createdAt: new Date(),
+        // Campos específicos para doação
+        castrado: '',
+        temperamento: '',
+        requisitos: '',
+        // Campos específicos para perdidos/encontrados
+        collar: '',
+        chip: '',
+        reward: '',
     });
 
-    const [uploading, setUploading] = useState(false);
-    const [preview, setPreview] = useState(null);
-    const [perdidos, setPerdidos] = useState([]);
-    const [dadosip, setDadosip] = useState([]);
-    const router = useRouter();
+    const steps = [
+        {
+            title: 'Tipo de Anúncio',
+            description: 'Selecione o tipo de anúncio que deseja criar',
+        },
+        {
+            title: 'Informações Básicas',
+            description: 'Dados básicos do pet',
+        },
+        {
+            title: 'Características',
+            description: 'Características físicas do pet',
+        },
+        {
+            title: 'Localização',
+            description: 'Onde o pet foi visto pela última vez',
+        },
+        {
+            title: 'Detalhes Adicionais',
+            description: 'Informações complementares',
+        },
+    ];
 
-    useEffect(() => {
-        if (user) {
-            setPet((prev) => ({
-                ...prev,
-                userId: user.uid,
-                email: user.email,
-            }));
-        }
-    }, [user]);
-
-    const handleImageUpload = async (e) => {
-        try {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            // Criar preview
+    const handleFileChange = async (e) => {
+        const file = e.target.files[0];
+        if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setPreview(reader.result);
             };
             reader.readAsDataURL(file);
+            setPet({ ...pet, photo: file });
+        }
+    };
 
-            // Preparar upload
-            setUploading(true);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!user) {
+            alert('Você precisa estar logado para criar um anúncio');
+            return;
+        }
+
+        if (!pet.photo) {
+            alert('Por favor, selecione uma foto do pet');
+            return;
+        }
+
+        try {
+            setLoading(true);
+
+            // Upload da imagem para o Vercel Blob
             const formData = new FormData();
-            formData.append('file', file);
+            formData.append('file', pet.photo);
 
-            // Fazer upload
             const response = await fetch('/api/upload', {
                 method: 'POST',
                 body: formData,
@@ -71,38 +106,23 @@ export default function Anunciar() {
 
             const data = await response.json();
 
-            if (data.success) {
-                setPet((prev) => ({
-                    ...prev,
-                    photoURL: data.fileUrl,
-                }));
-            } else {
-                throw new Error(data.error || 'Erro ao fazer upload');
+            if (!data.success) {
+                throw new Error(data.error || 'Erro ao fazer upload da imagem');
             }
-        } catch (error) {
-            console.error('Erro:', error);
-            alert('Erro ao fazer upload da imagem. Tente novamente.');
-        } finally {
-            setUploading(false);
-        }
-    };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        if (!pet.photoURL) {
-            alert('Por favor, faça upload de uma foto do pet');
-            return;
-        }
-
-        try {
-            // Adicionar data de criação
+            // Se chegou aqui, o upload da imagem foi bem sucedido
             const petData = {
                 ...pet,
-                createdAt: new Date().toISOString(),
+                photoURL: data.fileUrl,
+                userId: user.uid,
+                userEmail: user.email,
+                userPhone: user.phone || '',
+                createdAt: new Date(),
             };
 
-            // Adicionar o documento e pegar a referência com o ID gerado
+            delete petData.photo;
+
+            // Criar o documento do pet no Firestore
             const docRef = await addDoc(collection(db, 'pets'), petData);
 
             // Atualizar o documento com seu próprio ID
@@ -110,84 +130,61 @@ export default function Anunciar() {
                 id: docRef.id,
             });
 
-            // Atualizar o array de pets do usuário
-            const userRef = doc(db, 'users', user.uid);
-            await updateDoc(userRef, {
-                pets: arrayUnion(docRef.id),
-            });
-
-            alert('Anúncio enviado com sucesso!');
-            router.push('/meus-anuncios');
+            alert('Anúncio criado com sucesso!');
+            router.push('/');
         } catch (error) {
-            console.error('Error:', error);
-            alert('Erro ao enviar anúncio. Tente novamente.');
+            console.error('Erro ao criar anúncio:', error);
+            alert('Erro ao criar anúncio. Tente novamente.');
+        } finally {
+            setLoading(false);
         }
     };
 
-    useEffect(() => {
-        const fetchDocuments = async () => {
-            const querySnapShot = await getDocs(collection(db, 'pets'));
-            const pets = [];
-            querySnapShot.forEach((doc) => {
-                pets.push(doc.data());
-            });
-            setPerdidos(pets);
-        };
-        fetchDocuments();
-    }, []);
+    const nextStep = () => {
+        setCurrentStep((prev) => Math.min(prev + 1, steps.length));
+    };
 
-    useEffect(() => {
-        const fetchip = async () => {
-            const ip = await fetch('https://api.ipify.org').then((response) => response.text());
-            const result = await fetch(`http://ip-api.com/json/${ip}`).then((response) => response.json());
-            setDadosip(result);
-        };
-        fetchip();
-    }, []);
+    const prevStep = () => {
+        setCurrentStep((prev) => Math.max(prev - 1, 1));
+    };
 
-    return (
-        <ProtectedRoute>
-            <div className="container flex w-full mx-auto px-4 py-24 rounded-full backdrop-blur-3xl mt-20 font-[family-name:var(--font-geist-sans)] bg-purple-50">
-                <Navbar />
-                <div className="md:flex-col flex justify-between md:w-1/2 rounded backdrop-blur-3xl px-4 py-4 bg-purple-200 md:overflow-y-auto md:border-r md:border-gray-200">
-                    <div className="p-4 bg-white rounded-lg shadow-lg mt-4">
-                        <h2 className="text-3xl text-gray-600 font-bold">Criar anúncio pet</h2>
-                        <p className="mt-2">Basta criar um anuncio com as informações do seu pet e ele será publicado na nossa plataforma.</p>
-                    </div>
+    const renderStep = () => {
+        switch (currentStep) {
+            case 1:
+                return (
+                    <div className="space-y-4">
+                        <label htmlFor="category" className="font-bold mb-2">
+                            Tipo de Anúncio
+                        </label>
+                        <select
+                            id="category"
+                            value={pet.category}
+                            onChange={(e) => setPet({ ...pet, category: e.target.value })}
+                            className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                            required
+                        >
+                            <option value="">Selecione uma opção</option>
+                            <option value="PERDI UM PET">Perdi um Pet</option>
+                            <option value="ENCONTREI UM PET">Encontrei um Pet</option>
+                            <option value="DOACAO">Pet para Doação</option>
+                        </select>
 
-                    {preview && (
-                        <div className="mt-4 p-4 bg-white rounded-lg shadow-lg">
-                            <h3 className="text-xl font-bold mb-2">Preview da Imagem</h3>
-                            <img src={preview} alt="Preview" className="w-full h-48 object-cover rounded-lg" />
+                        <div className="mt-8">
+                            <label className="font-bold mb-2 block">Foto do Pet</label>
+                            <input type="file" accept="image/*" onChange={handleFileChange} className="w-full" required />
+                            {preview && (
+                                <div className="mt-4">
+                                    <img src={preview} alt="Preview" className="max-w-xs rounded-lg" />
+                                </div>
+                            )}
                         </div>
-                    )}
-
-                    <div className="mt-4">
-                        <p className="font-bold">
-                            Pets cadastrados: <span className="text-purple-600">{perdidos.length}</span>
-                        </p>
                     </div>
-                </div>
+                );
 
-                <div className="md:w-1/2 px-8">
-                    <h1 className="text-3xl font-bold mb-6">Anunciar Pet</h1>
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                        <div className="flex flex-col">
-                            <label htmlFor="photo" className="font-bold mb-2">
-                                Foto do Pet
-                            </label>
-                            <input
-                                type="file"
-                                id="photo"
-                                accept="image/*"
-                                onChange={handleImageUpload}
-                                className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                disabled={uploading}
-                            />
-                            {uploading && <p className="text-sm text-purple-600 mt-1">Fazendo upload...</p>}
-                        </div>
-
-                        <div className="flex flex-col">
+            case 2:
+                return (
+                    <div className="space-y-4">
+                        <div>
                             <label htmlFor="name" className="font-bold mb-2">
                                 Nome do Pet
                             </label>
@@ -196,12 +193,30 @@ export default function Anunciar() {
                                 id="name"
                                 value={pet.name}
                                 onChange={(e) => setPet({ ...pet, name: e.target.value })}
-                                className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                required
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                placeholder="Nome do pet (se souber)"
                             />
                         </div>
 
-                        <div className="flex flex-col">
+                        <div>
+                            <label htmlFor="species" className="font-bold mb-2">
+                                Espécie
+                            </label>
+                            <select
+                                id="species"
+                                value={pet.species}
+                                onChange={(e) => setPet({ ...pet, species: e.target.value })}
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                required
+                            >
+                                <option value="">Selecione uma espécie</option>
+                                <option value="CACHORRO">Cachorro</option>
+                                <option value="GATO">Gato</option>
+                                <option value="OUTRO">Outro</option>
+                            </select>
+                        </div>
+
+                        <div>
                             <label htmlFor="breed" className="font-bold mb-2">
                                 Raça
                             </label>
@@ -210,115 +225,173 @@ export default function Anunciar() {
                                 id="breed"
                                 value={pet.breed}
                                 onChange={(e) => setPet({ ...pet, breed: e.target.value })}
-                                className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                placeholder="Raça do pet (se souber)"
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="gender" className="font-bold mb-2">
+                                Sexo
+                            </label>
+                            <select
+                                id="gender"
+                                value={pet.gender}
+                                onChange={(e) => setPet({ ...pet, gender: e.target.value })}
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                required
+                            >
+                                <option value="">Selecione o sexo</option>
+                                <option value="MACHO">Macho</option>
+                                <option value="FEMEA">Fêmea</option>
+                                <option value="NAO_IDENTIFICADO">Não Identificado</option>
+                            </select>
+                        </div>
+                    </div>
+                );
+
+            case 3:
+                return (
+                    <div className="space-y-4">
+                        <div>
+                            <label htmlFor="age" className="font-bold mb-2">
+                                Idade Aproximada
+                            </label>
+                            <input
+                                type="text"
+                                id="age"
+                                value={pet.age}
+                                onChange={(e) => setPet({ ...pet, age: e.target.value })}
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                placeholder="Ex: 2 anos, 6 meses..."
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="size" className="font-bold mb-2">
+                                Porte
+                            </label>
+                            <select
+                                id="size"
+                                value={pet.size}
+                                onChange={(e) => setPet({ ...pet, size: e.target.value })}
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                required
+                            >
+                                <option value="">Selecione o porte</option>
+                                <option value="PEQUENO">Pequeno</option>
+                                <option value="MEDIO">Médio</option>
+                                <option value="GRANDE">Grande</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label htmlFor="color" className="font-bold mb-2">
+                                Cor
+                            </label>
+                            <input
+                                type="text"
+                                id="color"
+                                value={pet.color}
+                                onChange={(e) => setPet({ ...pet, color: e.target.value })}
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                placeholder="Ex: preto com manchas brancas"
                                 required
                             />
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="flex flex-col">
-                                <label htmlFor="age" className="font-bold mb-2">
-                                    Idade
-                                </label>
-                                <input
-                                    type="number"
-                                    id="age"
-                                    value={pet.age}
-                                    onChange={(e) => setPet({ ...pet, age: e.target.value })}
-                                    className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                    required
-                                />
-                            </div>
-
-                            <div className="flex flex-col">
-                                <label htmlFor="weight" className="font-bold mb-2">
-                                    Peso (kg)
-                                </label>
-                                <input
-                                    type="number"
-                                    id="weight"
-                                    value={pet.weight}
-                                    onChange={(e) => setPet({ ...pet, weight: e.target.value })}
-                                    className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="flex flex-col">
-                                <label htmlFor="city" className="font-bold mb-2">
-                                    Cidade
-                                </label>
-                                <input
-                                    type="text"
-                                    id="city"
-                                    value={pet.city || dadosip.city}
-                                    onChange={(e) => setPet({ ...pet, city: e.target.value })}
-                                    className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                    required
-                                />
-                            </div>
-
-                            <div className="flex flex-col">
-                                <label htmlFor="state" className="font-bold mb-2">
-                                    Estado
-                                </label>
-                                <input
-                                    type="text"
-                                    id="state"
-                                    value={pet.state || dadosip.regionName}
-                                    onChange={(e) => setPet({ ...pet, state: e.target.value })}
-                                    className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col">
-                            <label htmlFor="category" className="font-bold mb-2">
-                                Categoria
+                        <div>
+                            <label htmlFor="weight" className="font-bold mb-2">
+                                Peso Aproximado (kg)
                             </label>
-                            <select
-                                id="category"
-                                value={pet.category}
-                                onChange={(e) => setPet({ ...pet, category: e.target.value })}
-                                className="py-2 px-4 rounded-md border-2 border-purple-600"
+                            <input
+                                type="number"
+                                id="weight"
+                                value={pet.weight}
+                                onChange={(e) => setPet({ ...pet, weight: e.target.value })}
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                placeholder="Ex: 10"
+                            />
+                        </div>
+                    </div>
+                );
+
+            case 4:
+                return (
+                    <div className="space-y-4">
+                        <div>
+                            <label htmlFor="lastSeenDate" className="font-bold mb-2">
+                                {pet.category === 'DOACAO' ? 'Data de Disponibilidade' : 'Data em que foi visto pela última vez'}
+                            </label>
+                            <input
+                                type="date"
+                                id="lastSeenDate"
+                                value={pet.lastSeenDate}
+                                onChange={(e) => setPet({ ...pet, lastSeenDate: e.target.value })}
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
                                 required
-                            >
-                                <option value="">Selecione uma opção</option>
-                                <option value="ENCONTREI UM PET">Encontrei um pet</option>
-                                <option value="PERDI UM PET">Perdi um pet</option>
-                                <option value="DOACAO">Pet para doação</option>
-                            </select>
+                            />
                         </div>
 
-                        {pet.category === 'DOACAO' && (
-                            <>
-                                <div className="flex flex-col">
-                                    <label htmlFor="vacinas" className="font-bold mb-2">
-                                        Vacinas
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="vacinas"
-                                        value={pet.vacinas || ''}
-                                        onChange={(e) => setPet({ ...pet, vacinas: e.target.value })}
-                                        className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                        placeholder="Ex: V8, Antirrábica, etc."
-                                    />
-                                </div>
+                        <div>
+                            <label htmlFor="lastSeenLocation" className="font-bold mb-2">
+                                {pet.category === 'DOACAO' ? 'Endereço' : 'Local onde foi visto pela última vez'}
+                            </label>
+                            <input
+                                type="text"
+                                id="lastSeenLocation"
+                                value={pet.lastSeenLocation}
+                                onChange={(e) => setPet({ ...pet, lastSeenLocation: e.target.value })}
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                placeholder="Ex: Próximo ao mercado X"
+                                required
+                            />
+                        </div>
 
-                                <div className="flex flex-col">
-                                    <label htmlFor="castrado" className="font-bold mb-2">
-                                        Castrado
+                        <div>
+                            <label htmlFor="city" className="font-bold mb-2">
+                                Cidade
+                            </label>
+                            <input
+                                type="text"
+                                id="city"
+                                value={pet.city}
+                                onChange={(e) => setPet({ ...pet, city: e.target.value })}
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="state" className="font-bold mb-2">
+                                Estado
+                            </label>
+                            <input
+                                type="text"
+                                id="state"
+                                value={pet.state}
+                                onChange={(e) => setPet({ ...pet, state: e.target.value })}
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                required
+                            />
+                        </div>
+                    </div>
+                );
+
+            case 5:
+                return (
+                    <div className="space-y-4">
+                        {pet.category !== 'DOACAO' && (
+                            <>
+                                <div>
+                                    <label htmlFor="collar" className="font-bold mb-2">
+                                        Coleira
                                     </label>
                                     <select
-                                        id="castrado"
-                                        value={pet.castrado || ''}
-                                        onChange={(e) => setPet({ ...pet, castrado: e.target.value })}
-                                        className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                        required
+                                        id="collar"
+                                        value={pet.collar}
+                                        onChange={(e) => setPet({ ...pet, collar: e.target.value })}
+                                        className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
                                     >
                                         <option value="">Selecione uma opção</option>
                                         <option value="SIM">Sim</option>
@@ -326,29 +399,82 @@ export default function Anunciar() {
                                     </select>
                                 </div>
 
-                                <div className="flex flex-col">
+                                <div>
+                                    <label htmlFor="chip" className="font-bold mb-2">
+                                        Microchip
+                                    </label>
+                                    <select
+                                        id="chip"
+                                        value={pet.chip}
+                                        onChange={(e) => setPet({ ...pet, chip: e.target.value })}
+                                        className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                    >
+                                        <option value="">Selecione uma opção</option>
+                                        <option value="SIM">Sim</option>
+                                        <option value="NAO">Não</option>
+                                        <option value="NAO_SEI">Não sei</option>
+                                    </select>
+                                </div>
+
+                                {pet.category === 'PERDI UM PET' && (
+                                    <div>
+                                        <label htmlFor="reward" className="font-bold mb-2">
+                                            Recompensa
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="reward"
+                                            value={pet.reward}
+                                            onChange={(e) => setPet({ ...pet, reward: e.target.value })}
+                                            className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                            placeholder="Valor da recompensa (opcional)"
+                                        />
+                                    </div>
+                                )}
+                            </>
+                        )}
+
+                        {pet.category === 'DOACAO' && (
+                            <>
+                                <div>
+                                    <label htmlFor="castrado" className="font-bold mb-2">
+                                        Castrado
+                                    </label>
+                                    <select
+                                        id="castrado"
+                                        value={pet.castrado}
+                                        onChange={(e) => setPet({ ...pet, castrado: e.target.value })}
+                                        className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                    >
+                                        <option value="">Selecione uma opção</option>
+                                        <option value="SIM">Sim</option>
+                                        <option value="NAO">Não</option>
+                                    </select>
+                                </div>
+
+                                <div>
                                     <label htmlFor="temperamento" className="font-bold mb-2">
                                         Temperamento
                                     </label>
                                     <textarea
                                         id="temperamento"
-                                        value={pet.temperamento || ''}
+                                        value={pet.temperamento}
                                         onChange={(e) => setPet({ ...pet, temperamento: e.target.value })}
-                                        className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                        className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
                                         placeholder="Descreva o temperamento do pet (dócil, brincalhão, etc.)"
                                         rows="3"
                                     ></textarea>
                                 </div>
 
-                                <div className="flex flex-col">
+                                <div>
                                     <label htmlFor="requisitos" className="font-bold mb-2">
                                         Requisitos para Adoção
                                     </label>
                                     <textarea
                                         id="requisitos"
-                                        value={pet.requisitos || ''}
+                                        value={pet.requisitos}
                                         onChange={(e) => setPet({ ...pet, requisitos: e.target.value })}
-                                        className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                        className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
                                         placeholder="Ex: Termo de adoção, visita prévia, etc."
                                         rows="3"
                                     ></textarea>
@@ -356,126 +482,98 @@ export default function Anunciar() {
                             </>
                         )}
 
-                        <div className="flex flex-col">
+                        <div>
                             <label htmlFor="description" className="font-bold mb-2">
-                                Descrição
+                                Descrição Adicional
                             </label>
                             <textarea
                                 id="description"
                                 value={pet.description}
                                 onChange={(e) => setPet({ ...pet, description: e.target.value })}
-                                className="py-2 px-4 rounded-md border-2 border-purple-600"
+                                className="w-full py-2 px-4 rounded-md border-2 border-purple-600"
+                                placeholder="Informações adicionais importantes"
                                 rows="4"
                                 required
                             ></textarea>
                         </div>
+                    </div>
+                );
+        }
+    };
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="flex flex-col">
-                                <label htmlFor="phone" className="font-bold mb-2">
-                                    Telefone (WhatsApp)
-                                </label>
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    value={pet.phone}
-                                    onChange={(e) => setPet({ ...pet, phone: e.target.value })}
-                                    className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                    required
-                                    placeholder="(00) 00000-0000"
-                                />
-                            </div>
+    if (!user) {
+        return (
+            <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8">
+                    <h2 className="text-center text-3xl font-bold text-gray-900 mb-4">Acesso Restrito</h2>
+                    <p className="text-center text-gray-600">Você precisa estar logado para criar um anúncio.</p>
+                </div>
+            </div>
+        );
+    }
 
-                            <div className="flex flex-col">
-                                <label htmlFor="email" className="font-bold mb-2">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    value={pet.email}
-                                    onChange={(e) => setPet({ ...pet, email: e.target.value })}
-                                    className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                    required
-                                />
-                            </div>
+    return (
+        <div className="min-h-screen bg-gray-100">
+            <Navbar />
+            <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                <div className="bg-white rounded-lg shadow-lg p-8">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Criar Anúncio</h2>
+
+                    {/* Stepper */}
+                    <div className="mb-8">
+                        <div className="flex justify-between items-center">
+                            {steps.map((step, index) => (
+                                <div key={index} className="flex flex-col items-center flex-1">
+                                    <div
+                                        className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                                            currentStep > index + 1 ? 'bg-green-500' : currentStep === index + 1 ? 'bg-purple-600' : 'bg-gray-300'
+                                        } text-white font-bold`}
+                                    >
+                                        {currentStep > index + 1 ? '✓' : index + 1}
+                                    </div>
+                                    <div className="text-xs mt-2 text-center">{step.title}</div>
+                                    {index < steps.length - 1 && (
+                                        <div className={`h-1 w-full ${currentStep > index + 1 ? 'bg-green-500' : 'bg-gray-300'} mt-4`} />
+                                    )}
+                                </div>
+                            ))}
                         </div>
+                    </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="flex flex-col">
-                                <label htmlFor="color" className="font-bold mb-2">
-                                    Cor
-                                </label>
-                                <input
-                                    type="text"
-                                    id="color"
-                                    value={pet.color}
-                                    onChange={(e) => setPet({ ...pet, color: e.target.value })}
-                                    className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                    required
-                                />
-                            </div>
+                    <form onSubmit={handleSubmit}>
+                        {renderStep()}
 
-                            <div className="flex flex-col">
-                                <label htmlFor="size" className="font-bold mb-2">
-                                    Porte
-                                </label>
-                                <select
-                                    id="size"
-                                    value={pet.size}
-                                    onChange={(e) => setPet({ ...pet, size: e.target.value })}
-                                    className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                    required
+                        <div className="mt-8 flex justify-between">
+                            {currentStep > 1 && (
+                                <button
+                                    type="button"
+                                    onClick={prevStep}
+                                    className="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600 transition-colors"
                                 >
-                                    <option value="">Selecione o porte</option>
-                                    <option value="PEQUENO">Pequeno</option>
-                                    <option value="MEDIO">Médio</option>
-                                    <option value="GRANDE">Grande</option>
-                                </select>
-                            </div>
+                                    Voltar
+                                </button>
+                            )}
+                            {currentStep < steps.length ? (
+                                <button
+                                    type="button"
+                                    onClick={nextStep}
+                                    className="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 transition-colors ml-auto"
+                                >
+                                    Próximo
+                                </button>
+                            ) : (
+                                <button
+                                    type="submit"
+                                    disabled={loading}
+                                    className="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors ml-auto disabled:bg-gray-400"
+                                >
+                                    {loading ? 'Criando...' : 'Criar Anúncio'}
+                                </button>
+                            )}
                         </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="flex flex-col">
-                                <label htmlFor="lastSeenDate" className="font-bold mb-2">
-                                    Data do Desaparecimento
-                                </label>
-                                <input
-                                    type="date"
-                                    id="lastSeenDate"
-                                    value={pet.lastSeenDate}
-                                    onChange={(e) => setPet({ ...pet, lastSeenDate: e.target.value })}
-                                    className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                    required
-                                />
-                            </div>
-
-                            <div className="flex flex-col">
-                                <label htmlFor="lastSeenLocation" className="font-bold mb-2">
-                                    Local do Desaparecimento
-                                </label>
-                                <input
-                                    type="text"
-                                    id="lastSeenLocation"
-                                    value={pet.lastSeenLocation}
-                                    onChange={(e) => setPet({ ...pet, lastSeenLocation: e.target.value })}
-                                    className="py-2 px-4 rounded-md border-2 border-purple-600"
-                                    placeholder="Rua, Bairro, Ponto de Referência"
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="bg-gradient-to-r from-purple-400 to-blue-600 text-lg text-white font-bold py-3 px-6 rounded-md hover:opacity-90 transition-opacity"
-                            disabled={uploading}
-                        >
-                            {uploading ? 'Enviando...' : 'Publicar Anúncio'}
-                        </button>
                     </form>
                 </div>
             </div>
-        </ProtectedRoute>
+        </div>
     );
 }
